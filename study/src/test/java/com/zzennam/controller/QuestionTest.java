@@ -1,4 +1,4 @@
-package com.zzennam.test1;
+package com.zzennam.controller;
 
 import static org.junit.Assert.*;
 
@@ -17,13 +17,16 @@ public class QuestionTest {
 
 	@Inject
 	private QuestionDAO dao;
+
 	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
-	
-	public void read() {
-		dao.read();
+
+	@Test
+	public void read() throws Exception {
+		System.out.println(dao.read());
+		System.out.println("Success");
 	}
 
 }

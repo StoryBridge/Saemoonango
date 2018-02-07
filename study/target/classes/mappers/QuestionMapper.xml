@@ -2,21 +2,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zzennam.persistence.QuestionMapper">
+<mapper namespace="com.zzennam.persistence.QuestionMapper">
 
 	<insert id="insert">
-		<!-- insert into tbl_ft_info(u_id, u_pw, u_name, u_email, u_phone, co_name, co_num, co_doc, f_code)
-		values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone}, #{co_name}, #{co_num}, #{co_doc}, #{f_code}) -->
+		<!-- insert into tbl_ft_info(u_id, u_pw, u_name, u_email, u_phone, co_name, 
+			co_num, co_doc, f_code) values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone}, 
+			#{co_name}, #{co_num}, #{co_doc}, #{f_code}) -->
 	</insert>
 
-	<select id="read" resultType="org.food.domain.MemberVO">
-		select * from location
+	<select id="read" resultType="hashmap">
+		select Qno, Question, RightAnswer, Point, Lno from question
 	</select>
 
 
 	<update id="update">
-		<!-- update tbl_ft_info set u_pw=#{u_pw} , u_email=#{u_email}, u_phone=#{u_phone}, co_doc=#{co_doc}
-		where u_id = #{u_id}	 -->
+		<!-- update tbl_ft_info set u_pw=#{u_pw} , u_email=#{u_email}, u_phone=#{u_phone}, 
+			co_doc=#{co_doc} where u_id = #{u_id} -->
 	</update>
 
 	<delete id="delete">

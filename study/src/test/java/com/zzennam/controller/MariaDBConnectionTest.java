@@ -1,4 +1,4 @@
-package com.zzennam.test1;
+package com.zzennam.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
