@@ -3,8 +3,8 @@ package com.zzennam.domain;
 public class LocationVO {
 	
 	private Integer Lno;
-	private Integer Lat;
-	private Integer Lng;
+	private Double Lat;
+	private Double Lng;
 	private String PlaceName;
 	
 

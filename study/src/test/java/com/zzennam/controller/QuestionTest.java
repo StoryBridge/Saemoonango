@@ -2,6 +2,8 @@ package com.zzennam.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.logging.Logger;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
