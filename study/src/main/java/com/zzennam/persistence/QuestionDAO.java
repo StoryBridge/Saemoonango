@@ -15,7 +15,7 @@ public interface QuestionDAO {
 		
 		public void delete(LocationVO vo) throws Exception;
 		
-		public List<QuestionVO> read() throws Exception;
+		public List<QuestionVO> read(int lno) throws Exception;
 		
 	
 }

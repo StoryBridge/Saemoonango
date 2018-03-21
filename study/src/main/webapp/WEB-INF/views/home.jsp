@@ -308,8 +308,8 @@
 					//console.log(lng);
 					//지도부분
 					//가정하기
-					//lng = 127.145425;
-					//lat = 37.44631;
+					lng = 127.145425;
+					lat = 37.44631;
 					displayMap(lat, lng);
 					playAlert = setInterval(function() {
 						//displayMap(lat, lng);

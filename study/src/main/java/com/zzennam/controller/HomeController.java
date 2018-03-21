@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,12 +51,12 @@ public class HomeController {
 
 	@CrossOrigin
 	@ResponseBody
-	@RequestMapping(value = "/question", method = RequestMethod.GET)
-	public HashMap<String, Object> question() throws Exception {
+	@RequestMapping(value = "/question/{lno}", method = RequestMethod.GET)
+	public HashMap<String, Object> question(@PathVariable int lno) throws Exception {
 		HashMap<String, Object> questionData = new HashMap<>();
 		System.out.println("Question Conneted......");
-		System.out.println(qDao.read());
-		questionData.put("question", qDao.read());
+		System.out.println(qDao.read(lno));
+		questionData.put("question", qDao.read(lno));
 		return questionData;
 	}
 

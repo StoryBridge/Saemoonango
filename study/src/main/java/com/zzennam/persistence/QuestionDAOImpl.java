@@ -35,8 +35,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	@Override
-	public List<QuestionVO> read() throws Exception {
-		return sqlsession.selectList("com.zzennam.persistence.QuestionMapper.read");
+	public List<QuestionVO> read(int lno) throws Exception {
+		return sqlsession.selectList("com.zzennam.persistence.QuestionMapper.read", lno);
 
 	}
 
