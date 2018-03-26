@@ -66,8 +66,8 @@ public class HomeController {
 	public HashMap<String, Object> location() throws Exception {
 		HashMap<String, Object> locationData = new HashMap<>();
 		System.out.println("Location Loading............");
-		//System.out.println(lDao.read().toString());
-		//locationData.put("location", lDao.read());
+		System.out.println(lDao.read().toString());
+		locationData.put("location", lDao.read());
 		return locationData;
 	}
 

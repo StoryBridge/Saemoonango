@@ -8,9 +8,11 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.QuestionDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +20,10 @@ import com.saemoonango.persistence.QuestionDAO;
 public class QuestionTest {
 
 	@Inject
-	private QuestionDAO dao;
+	private QuestionDAO dao;	
+	
+	@Autowired
+	private LocationDAO ldao;
 
 	@Test
 	public void test() {
@@ -27,8 +32,13 @@ public class QuestionTest {
 
 	@Test
 	public void read() throws Exception {
-		System.out.println(dao.read());
+		System.out.println(dao.read(1));
 		System.out.println("Success");
 	}
-
+	
+	@Test
+	public void read2() throws Exception {
+		System.out.println(ldao.read());
+		System.out.println("Success");
+	}
 }

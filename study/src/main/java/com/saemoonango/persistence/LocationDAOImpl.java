@@ -11,7 +11,7 @@ import com.saemoonangodomain.LocationVO;
 import com.saemoonangodomain.QuestionVO;
 
 @Repository
-public class LocationDAOImpl implements QuestionDAO {
+public class LocationDAOImpl implements LocationDAO {
 	
 	@Inject
 	private SqlSessionTemplate sqlsession;
@@ -35,8 +35,8 @@ public class LocationDAOImpl implements QuestionDAO {
 	}
 
 	@Override
-	public List<QuestionVO> read(int lno) throws Exception {
-		return sqlsession.selectList("com.zzennam.persistence.QuestionMapper.read", lno);
+	public List<LocationVO> read() throws Exception {
+		return sqlsession.selectList("com.zzennam.persistence.QuestionMapper.read");
 
 	}
 

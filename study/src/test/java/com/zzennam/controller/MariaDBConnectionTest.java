@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class MariaDBConnectionTest {
 	private static final String DRIVER = "org.mariadb.jdbc.Driver";
-	private static final String URL = "jdbc:mariadb://localhost:3306/study";
+	private static final String URL = "jdbc:mariadb://localhost:3306/saemoonango";
 	private static final String USER = "root"; // db 접속 id
 	private static final String PW = "1234"; // db 접속 password
 
