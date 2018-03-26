@@ -1,4 +1,4 @@
-package com.zzennam.controller;
+package com.saemoonango.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zzennam.persistence.LocationDAO;
-import com.zzennam.persistence.QuestionDAO;
+import com.saemoonango.persistence.LocationDAO;
+import com.saemoonango.persistence.QuestionDAO;
 
 /**
  * Handles requests for the application home page.
@@ -66,8 +66,8 @@ public class HomeController {
 	public HashMap<String, Object> location() throws Exception {
 		HashMap<String, Object> locationData = new HashMap<>();
 		System.out.println("Location Loading............");
-		System.out.println(lDao.read().toString());
-		locationData.put("location", lDao.read());
+		//System.out.println(lDao.read().toString());
+		//locationData.put("location", lDao.read());
 		return locationData;
 	}
 

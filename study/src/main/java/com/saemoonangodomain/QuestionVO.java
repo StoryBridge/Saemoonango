@@ -1,4 +1,4 @@
-package com.zzennam.domain;
+package com.saemoonangodomain;
 
 public class QuestionVO {
 	
