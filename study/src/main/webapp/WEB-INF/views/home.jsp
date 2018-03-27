@@ -66,6 +66,7 @@
 
 	<div class="container-fluid p-0">
 
+		<div id="map" style="width: 100%; height: 350px;"></div>
 		<section class="resume-section p-3 p-lg-5 d-flex d-column" id="lank">
 			<div class="my-auto">
 
@@ -283,14 +284,23 @@
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 	<!-- Custom scripts for this template -->
 	<script src="js/resume.min.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b5474cbf83da15f638ea76b63ed04c3"></script>
+	<script src="js/displayMap.js"></script>
+	<%--<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c370f01b5f96b5d7588b834370912c25"></script> --%>
 
 	<script src="js/host.js"></script>
 	<script src="js/home.js"></script>
+
 	<script>
 		var lat;
 		var lng;
 
 		$(document).ready(function() {
+			var timestamp = new Date().getTime();
+			console.log("****************************");
+			console.log("시작 시간: " + timestamp);
 			// Geolocation API에 액세스할 수 있는지를 확인
 			if (navigator.geolocation) {
 				//위치 정보를 얻기
@@ -300,7 +310,9 @@
 					var distance;
 					var disX;
 					var disY;
+					var timestamp2 = new Date().getTime();
 					console.log("****************************");
+					console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
 
 					lat = pos.coords.latitude;
 					lng = pos.coords.longitude;
@@ -308,17 +320,17 @@
 					//console.log(lng);
 					//지도부분
 					//가정하기
-					lng = 127.145425;
-					lat = 37.44631;
+					//lng = 127.145425;
+					//lat = 37.44631;
 					displayMap(lat, lng);
 					playAlert = setInterval(function() {
-						//displayMap(lat, lng);
+						displayMap(lat, lng);
 					}, 5000);
 
 					//console.log("getJson Data Start");
 
 					// 게임 문답부분
-					questionManager();
+					//questionManager();
 
 				});
 			} else {
@@ -328,103 +340,8 @@
 		});
 	</script>
 
-	<%--<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c370f01b5f96b5d7588b834370912c25"></script> --%>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b5474cbf83da15f638ea76b63ed04c3"></script>
-	<script src="js/displayMap.js"></script>
-	<script src="js/question.js"></script>
-	<script>
--		function displayMap(lat, lng) {
--			console.log(lat);
--			console.log(lng);
--			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
--			mapOption = {
--				center : new daum.maps.LatLng(lat, lng), // 지도의 중심좌표
--				level : 3
--			// 지도의 확대 레벨
--			};
--
--			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
--
--			// 마커가 표시될 위치입니다 
--			var markerPosition = new daum.maps.LatLng(lat, lng);
--
--			// 마커를 생성합니다
--			var marker = new daum.maps.Marker({
--				position : markerPosition
--			});
--
--			homeManaager.locationData(location);
--			function location(data){
--				var positions = [];
--				$.each(data.location, function (i, location){
--					positions.push({
--						title: '<div>'+location.PlaceName+'</div>',
--						latlng: new daum.maps.LatLng(location.Lng, location.Lat)									
--					});
--				});				
--				console.log(positions);		
--				
--				// 마커 이미지의 이미지 주소입니다
--				var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
--				    
--				for (var i = 0; i < positions.length; i ++) {
--				    
--				    // 마커 이미지의 이미지 크기 입니다
--				    var imageSize = new daum.maps.Size(24, 35); 
--				    
--				    // 마커 이미지를 생성합니다    
--				    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
--				    
--				    // 마커를 생성합니다
--				    var marker = new daum.maps.Marker({
--				        map: map, // 마커를 표시할 지도
--				        position: positions[i].latlng, // 마커를 표시할 위치
--				        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
--				        image : markerImage // 마커 이미지 
--				    });
--				    
--				    // 마커에 표시할 인포윈도우를 생성합니다 
--				    var infowindow = new daum.maps.InfoWindow({
--				        content: positions[i].title // 인포윈도우에 표시할 내용
--				    });
--
--				    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
--				    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
--				    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
--				    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
--				    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
--				}
--				
--				// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
--				function makeOverListener(map, marker, infowindow) {
--				    return function() {
--				        infowindow.open(map, marker);
--				    };
--				}
--
--				// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
--				function makeOutListener(infowindow) {
--				    return function() {
--				        infowindow.close();
--				    };
--				}
--
--				
--				// 마커가 지도 위에 표시되도록 설정합니다
--				marker.setMap(map);
--
--				// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
--				// marker.setMap(null);
--			}
--			
--			
--
--	
--			
--		}
--	</script>
+
+
 </body>
 
 </html>

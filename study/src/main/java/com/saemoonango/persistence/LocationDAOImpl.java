@@ -36,7 +36,7 @@ public class LocationDAOImpl implements LocationDAO {
 
 	@Override
 	public List<LocationVO> read() throws Exception {
-		return sqlsession.selectList("com.zzennam.persistence.QuestionMapper.read");
+		return sqlsession.selectList("com.zzennam.persistence.LocationMapper.read");
 
 	}
 
