@@ -25,8 +25,11 @@ function displayMap(lat, lng) {
 	function location(data) {
 		var timestamp3 = new Date().getTime();
 		console.log("****************************");
+		console.log("lat : " + lat + " lng : "+ lng);
 		console.log("LocationData: "+(timestamp3-timestamp2));
 		var positions = [];
+		var disX;
+		var disY;
 		positions.push({
 			title : '<div>내위치</div>',
 			latlng : new daum.maps.LatLng(lat, lng)
@@ -36,6 +39,11 @@ function displayMap(lat, lng) {
 				title : '<div>' + location.PlaceName + '</div>',
 				latlng : new daum.maps.LatLng(location.Lng, location.Lat)
 			});
+			disX = location.Lng - lat;
+			disY = location.Lat - lng;
+			if(Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY)) < 0.0001){
+				console.log("문제내라!!!");
+			}
 		});
 		console.log(positions);
 

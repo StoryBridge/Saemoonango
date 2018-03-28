@@ -308,8 +308,10 @@
 					$('#latitude').html(pos.coords.latitude); // 위도
 					$('#longitude').html(pos.coords.longitude); // 경도
 					var distance;
-					var disX;
-					var disY;
+					var disX =37.446896 - 37.4469025 ;
+					var disY = 127.143955 - 127.14405579999999;
+					//최소거리 0.0001
+					console.log(Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY)));
 					var timestamp2 = new Date().getTime();
 					console.log("****************************");
 					console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
@@ -319,12 +321,12 @@
 					//console.log(lat);
 					//console.log(lng);
 					//지도부분
-					//가정하기
-					//lng = 127.145425;
-					//lat = 37.44631;
+					//가정하기 사거리
+					lng = 127.145425;
+					lat = 37.44631;
 					displayMap(lat, lng);
 					playAlert = setInterval(function() {
-						displayMap(lat, lng);
+						//displayMap(lat, lng);
 					}, 5000);
 
 					//console.log("getJson Data Start");
