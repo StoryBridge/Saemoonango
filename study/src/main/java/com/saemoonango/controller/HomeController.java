@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.QuestionDAO;
@@ -32,7 +33,7 @@ public class HomeController {
 
 	@Inject
 	private QuestionDAO qDao;
-	@Autowired //스프링프레임워크에서만 작동 프레임워크의 종속성을 피하기 위해선 inject를 사용하자!
+	@Autowired // 스프링프레임워크에서만 작동 프레임워크의 종속성을 피하기 위해선 inject를 사용하자!
 	private LocationDAO lDao;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -79,6 +80,16 @@ public class HomeController {
 		System.out.println("JSON CONNETED............");
 		map.put("abcaa", "ddeeed");
 		return map;
+	}
+
+	@RequestMapping(value = "/answer", method = RequestMethod.POST)
+	public String getAnswer(RedirectAttributes rttr) throws Exception {
+		logger.info("getAnswer");
+		System.out.println(rttr);
+		System.out.println("getAnswer.....");
+
+		// rttr.addFlashAttribute("result", "success");
+		return "home";
 	}
 
 }

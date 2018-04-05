@@ -30,50 +30,101 @@
 
 <!-- Custom styles for this template -->
 <link href="css/resume.min.css" rel="stylesheet">
+
+
+<link rel="stylesheet"
+	href="https://unpkg.com/animate.css@3.5.2/animate.css" type="text/css" />
+
+<link rel="stylesheet"
+	href="https://unpkg.com/rmodal@1.0.28/dist/rmodal.css" type="text/css" />
+<script type="text/javascript"
+	src="https://unpkg.com/rmodal@1.0.26/dist/rmodal.js"></script>
 <style type="text/css">
-/* The Modal (background) */
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
+.modal .modal-dialog {
+	width: 400px;
+	margin-top: 60;
 }
 </style>
+<script type="text/javascript">
+	window.onload = function() {
+		var modal = new RModal(document.getElementById('modal'), {
+			//content: 'Abracadabra'
+			beforeOpen : function(next) {
+				console.log('beforeOpen');
+				next();
+			},
+			afterOpen : function() {
+				console.log('opened');
+			}
+
+			,
+			beforeClose : function(next) {
+				console.log('beforeClose');
+				next();
+			},
+			afterClose : function() {
+				console.log('closed');
+			}
+		// , bodyClass: 'modal-open'
+		// , dialogClass: 'modal-dialog'
+		// , dialogOpenClass: 'animated fadeIn'
+		// , dialogCloseClass: 'animated fadeOut'
+
+		// , focus: true
+		// , focusElements: ['input.form-control', 'textarea', 'button.btn-primary']
+
+		// , escapeClose: true
+		});
+
+		document.addEventListener('keydown', function(ev) {
+			modal.keydown(ev);
+		}, false);
+
+		document.getElementById('showModal').addEventListener("click",
+				function(ev) {
+					ev.preventDefault();
+					//여기서부터!! 20180404
+					console.log(document.getElementById("answer").getAttribute('answer'));
+					modal.open();
+				}, false);
+
+		window.modal = modal;
+	}
+</script>
 </head>
 
 <body id="page-top">
 
+	<div id="modal" class="modal">
+		<div class="modal-dialog animated">
+			<div class="modal-content">
+				<form class="form-horizontal" method="get">
+					<div class="modal-header" id="modal-header"></div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="dummyText" id="question"
+								class="control-label col-xs-4"></label>
+							<div class="input-group col-xs-7">
+								<input type="text" name="answer" id="answer"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn btn-primary" type="submit"
+							onclick="modal.close();">Commit</button>
+						<button class="btn btn-default" type="button"
+							onclick="modal.close();">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
-		id="sideNav">
+		id="sideNav" style="">
 		<a class="navbar-brand js-scroll-trigger" href="#page-top"> <span
 			class="d-block d-lg-none">Start Bootstrap</span> <span
 			class="d-none d-lg-block"> <img
@@ -105,19 +156,16 @@
 
 		<div id="map" style="width: 100%; height: 350px;"></div>
 
-		<!-- Trigger/Open The Modal -->
-		<button id="myBtn">Open Modal</button>
-		
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
 
-			<!-- Modal content -->
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<p>Some text in the Modal..</p>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<a href="#" id="showModal" class="btn btn-success">Show modal</a>
 			</div>
-
 		</div>
+
+
+
 		<section class="resume-section p-3 p-lg-5 d-flex d-column" id="lank">
 			<div class="my-auto">
 
@@ -396,33 +444,8 @@
 
 				});
 	</script>
-	<script>
-			//Get the modal
-			var modal = document.getElementById('myModal');
 
-			// Get the button that opens the modal
-			var btn = document.getElementById("myBtn");
 
-			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
-
-			// When the user clicks on the button, open the modal 
-			btn.onclick = function() {
-				modal.style.display = "block";
-			}
-
-			// When the user clicks on <span> (x), close the modal
-			span.onclick = function() {
-				modal.style.display = "none";
-			}
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				if (event.target == modal) {
-					modal.style.display = "none";
-				}
-			}
-		</script>
 
 
 

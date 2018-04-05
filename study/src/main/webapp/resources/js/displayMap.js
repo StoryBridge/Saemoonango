@@ -1,7 +1,7 @@
 function displayMap(lat, lng) {
 	var timestamp2 = new Date().getTime();
 	console.log("****************************");
-	console.log("dispayMap 시간: "+timestamp2);
+	console.log("dispayMap 시간: " + timestamp2);
 	console.log(lat);
 	console.log(lng);
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -25,8 +25,8 @@ function displayMap(lat, lng) {
 	function location(data) {
 		var timestamp3 = new Date().getTime();
 		console.log("****************************");
-		console.log("lat : " + lat + " lng : "+ lng);
-		console.log("LocationData: "+(timestamp3-timestamp2));
+		console.log("lat : " + lat + " lng : " + lng);
+		console.log("LocationData: " + (timestamp3 - timestamp2));
 		var positions = [];
 		var disX;
 		var disY;
@@ -34,28 +34,38 @@ function displayMap(lat, lng) {
 			title : '<div>내위치</div>',
 			latlng : new daum.maps.LatLng(lat, lng)
 		});
-		$.each(data.location, function(i, location) {
-			positions.push({
-				title : '<div>' + location.PlaceName + '</div>',
-				latlng : new daum.maps.LatLng(location.Lng, location.Lat)
-			});
-			disX = location.Lng - lat;
-			disY = location.Lat - lng;
-			if(Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY)) < 0.0001){
-				console.log(location.Lno+"번 문제내라!!!");
-				homeManager.questionData(location.Lno, question);
-				function question(data){
-					console.log("GET QUESTION");
-					console.log(data);
-					modal.style.display = "block";
-					console.log("보이니3");
-				}
-			}
-		});
+		$
+				.each(
+						data.location,
+						function(i, location) {
+							positions
+									.push({
+										title : '<div>' + location.PlaceName
+												+ '</div>',
+										latlng : new daum.maps.LatLng(
+												location.Lng, location.Lat)
+									});
+							disX = location.Lng - lat;
+							disY = location.Lat - lng;
+							if (Math.sqrt(Math.abs(disX * disX)
+									+ Math.abs(disY * disY)) < 0.0001) {
+								console.log(location.Lno + "번 문제내라!!!");
+								homeManager
+										.questionData(location.Lno, question);
+								function question(data) {
+									console.log("GET QUESTION");
+									console.log(data);
+									document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
+									document.getElementById("question").innerHTML = data.question[0].Question
+											+ ' ('
+											+ data.question[0].Point
+											+ ')Point';
+									modal.open();
+								}
+							}
+						});
 		console.log(positions);
 
-		
-		
 		var imageSrc1 = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
 		// 마커이미지의 주소입니다
 		imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
@@ -65,7 +75,7 @@ function displayMap(lat, lng) {
 
 		// 마커 이미지를 생성합니다
 		var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize);
-		
+
 		// 마커를 생성합니다
 		var marker = new daum.maps.Marker({
 			map : map, // 마커를 표시할 지도
@@ -89,8 +99,6 @@ function displayMap(lat, lng) {
 					+ '</span>' + '</div>',
 			yAnchor : 1
 		});
-
-		
 
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -155,10 +163,10 @@ function displayMap(lat, lng) {
 
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
-		
+
 		var timestamp4 = new Date().getTime();
 		console.log("****************************");
-		console.log("끝나는 시간: "+(timestamp4-timestamp3));
+		console.log("끝나는 시간: " + (timestamp4 - timestamp3));
 
 	}
 
