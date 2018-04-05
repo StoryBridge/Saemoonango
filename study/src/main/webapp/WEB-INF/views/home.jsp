@@ -30,7 +30,44 @@
 
 <!-- Custom styles for this template -->
 <link href="css/resume.min.css" rel="stylesheet">
+<style type="text/css">
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -67,6 +104,20 @@
 	<div class="container-fluid p-0">
 
 		<div id="map" style="width: 100%; height: 350px;"></div>
+
+		<!-- Trigger/Open The Modal -->
+		<button id="myBtn">Open Modal</button>
+		
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<p>Some text in the Modal..</p>
+			</div>
+
+		</div>
 		<section class="resume-section p-3 p-lg-5 d-flex d-column" id="lank">
 			<div class="my-auto">
 
@@ -277,6 +328,7 @@
 	</div>
 
 
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -297,50 +349,80 @@
 		var lat;
 		var lng;
 
-		$(document).ready(function() {
-			var timestamp = new Date().getTime();
-			console.log("****************************");
-			console.log("시작 시간: " + timestamp);
-			// Geolocation API에 액세스할 수 있는지를 확인
-			if (navigator.geolocation) {
-				//위치 정보를 얻기
-				navigator.geolocation.getCurrentPosition(function(pos) {
-					$('#latitude').html(pos.coords.latitude); // 위도
-					$('#longitude').html(pos.coords.longitude); // 경도
-					var distance;
-					var disX =37.446896 - 37.4469025 ;
-					var disY = 127.143955 - 127.14405579999999;
-					//최소거리 0.0001
-					console.log(Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY)));
-					var timestamp2 = new Date().getTime();
+		$(document).ready(
+				function() {
+					var timestamp = new Date().getTime();
 					console.log("****************************");
-					console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
+					console.log("시작 시간: " + timestamp);
+					// Geolocation API에 액세스할 수 있는지를 확인
+					if (navigator.geolocation) {
+						//위치 정보를 얻기
+						navigator.geolocation.getCurrentPosition(function(pos) {
+							$('#latitude').html(pos.coords.latitude); // 위도
+							$('#longitude').html(pos.coords.longitude); // 경도
+							var distance;
+							var disX = 37.446896 - 37.4469025;
+							var disY = 127.143955 - 127.14405579999999;
+							//최소거리 0.0001
+							console.log(Math.sqrt(Math.abs(disX * disX)
+									+ Math.abs(disY * disY)));
+							var timestamp2 = new Date().getTime();
+							console.log("****************************");
+							console.log("위도 경도 얻는 시간: "
+									+ (timestamp2 - timestamp));
 
-					lat = pos.coords.latitude;
-					lng = pos.coords.longitude;
-					//console.log(lat);
-					//console.log(lng);
-					//지도부분
-					//가정하기 사거리
-					lng = 127.145425;
-					lat = 37.44631;
-					displayMap(lat, lng);
-					playAlert = setInterval(function() {
-						//displayMap(lat, lng);
-					}, 5000);
+							lat = pos.coords.latitude;
+							lng = pos.coords.longitude;
+							//console.log(lat);
+							//console.log(lng);
+							//지도부분
+							//가정하기 사거리
+							lng = 127.145425;
+							lat = 37.44631;
+							displayMap(lat, lng);
+							playAlert = setInterval(function() {
+								//displayMap(lat, lng);
+							}, 5000);
 
-					//console.log("getJson Data Start");
+							//console.log("getJson Data Start");
 
-					// 게임 문답부분
-					//questionManager();
+							// 게임 문답부분
+							//questionManager();
+
+						});
+					} else {
+						alert("이환경에서는 실행이 불가능합니다 -LSH");
+					}
 
 				});
-			} else {
-				alert("이환경에서는 실행이 불가능합니다 -LSH");
+	</script>
+	<script>
+			//Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("myBtn");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on the button, open the modal 
+			btn.onclick = function() {
+				modal.style.display = "block";
 			}
 
-		});
-	</script>
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
 
 
 

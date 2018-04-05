@@ -42,7 +42,14 @@ function displayMap(lat, lng) {
 			disX = location.Lng - lat;
 			disY = location.Lat - lng;
 			if(Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY)) < 0.0001){
-				console.log("문제내라!!!");
+				console.log(location.Lno+"번 문제내라!!!");
+				homeManager.questionData(location.Lno, question);
+				function question(data){
+					console.log("GET QUESTION");
+					console.log(data);
+					modal.style.display = "block";
+					console.log("보이니3");
+				}
 			}
 		});
 		console.log(positions);
