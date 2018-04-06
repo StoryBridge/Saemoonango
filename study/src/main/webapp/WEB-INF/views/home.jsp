@@ -102,7 +102,12 @@
 					}else{
 						console.log("땡");
 						let point = $('#point').html();
-						console.log(point+"점");
+						console.log("원점수: " + point);
+						point -= 1;
+						console.log("적용 점수: "+ point);
+						document.getElementById("point").innerHTML = point;
+						
+						
 						
 					}
 				}, false);
