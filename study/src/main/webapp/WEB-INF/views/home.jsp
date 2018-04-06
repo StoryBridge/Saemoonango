@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <base href="resources/">
-<title>Resume - Start Bootstrap Theme</title>
+<title>SaemoonanGo</title>
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,20 +50,20 @@
 		var modal = new RModal(document.getElementById('modal'), {
 			//content: 'Abracadabra'
 			beforeOpen : function(next) {
-				console.log('beforeOpen');
+				//console.log('beforeOpen');
 				next();
 			},
 			afterOpen : function() {
-				console.log('opened');
+				//console.log('opened');
 			}
 
 			,
 			beforeClose : function(next) {
-				console.log('beforeClose');
+				//console.log('beforeClose');
 				next();
 			},
 			afterClose : function() {
-				console.log('closed');
+				//console.log('closed');
 			}
 		// , bodyClass: 'modal-open'
 		// , dialogClass: 'modal-dialog'
@@ -84,10 +84,28 @@
 				function(ev) {
 					ev.preventDefault();
 					//여기서부터!! 20180404
-					console.log(document.getElementById("answer").getAttribute('answer'));
+
 					modal.open();
 				}, false);
-
+		document.getElementById('commit').addEventListener("click",
+				function(ev) {
+					ev.preventDefault();
+					let getAnswer = $("#answer").val();
+					console.log("commit answer: "+ getAnswer);					
+					let rightAnswer = $('#rightAnswer').html();
+					console.log("rightAnswer is "+rightAnswer);
+					if(rightAnswer == getAnswer){
+						console.log("정답");
+						/* $.post("/answer", {answer: answer}, function(result){
+			            console.log("post.............");
+			       		}); */
+					}else{
+						console.log("땡");
+						let point = $('#point').html();
+						console.log(point+"점");
+						
+					}
+				}, false);
 		window.modal = modal;
 	}
 </script>
@@ -111,9 +129,9 @@
 							</div>
 						</div>
 					</div>
-
+					<p hidden id="rightAnswer"></p>
 					<div class="modal-footer">
-						<button class="btn btn-primary" type="submit"
+						<button class="btn btn-primary" type="submit" id="commit"
 							onclick="modal.close();">Commit</button>
 						<button class="btn btn-default" type="button"
 							onclick="modal.close();">Cancel</button>
@@ -155,9 +173,7 @@
 	<div class="container-fluid p-0">
 
 		<div id="map" style="width: 100%; height: 350px;"></div>
-
-
-
+		
 		<div class="row">
 			<div class="col-lg-12">
 				<a href="#" id="showModal" class="btn btn-success">Show modal</a>

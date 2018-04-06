@@ -57,9 +57,9 @@ function displayMap(lat, lng) {
 									console.log(data);
 									document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
 									document.getElementById("question").innerHTML = data.question[0].Question
-											+ ' ('
-											+ data.question[0].Point
-											+ ')Point';
+											+ ' <span id="point">'
+											+ data.question[0].Point + '</span>점';
+									document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
 									modal.open();
 								}
 							}

@@ -83,10 +83,10 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
-	public String getAnswer(RedirectAttributes rttr) throws Exception {
-		logger.info("getAnswer");
-		System.out.println(rttr);
-		System.out.println("getAnswer.....");
+	public String getAnswer(String answer, RedirectAttributes rttr) throws Exception {
+		System.out.println(answer);
+		//System.out.println(rttr);
+		System.out.println("getAnswer Point is "+answer);
 
 		// rttr.addFlashAttribute("result", "success");
 		return "home";
