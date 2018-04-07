@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.MemberDetailDAO;
 import com.saemoonango.persistence.QuestionDAO;
+import com.saemoonango.service.MemberDetailService;
 import com.saemoonangodomain.MemberDetailVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +27,7 @@ public class TestCase {
 	private LocationDAO ldao;
 	
 	@Inject
-	private MemberDetailDAO mDdao;
+	private MemberDetailService mDdao;
 	
 
 	@Test
@@ -53,6 +54,14 @@ public class TestCase {
 		vo.setId("zzennam");
 		vo.setQno(4);
 		mDdao.insert(vo);
+	}
+	@Test
+	public void memberDetailCertificateTest() throws Exception{
+		MemberDetailVO vo = new MemberDetailVO();		
+		vo.setId("zzennam");
+		vo.setQno(3);
+		//있으면 true 없으면 false
+		System.out.println(mDdao.certificate(vo));
 		
 	}
 	

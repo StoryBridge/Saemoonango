@@ -1,11 +1,11 @@
-package com.saemoonango.persistence;
+package com.saemoonango.service;
 
 import java.util.List;
 
 import com.saemoonangodomain.LocationVO;
 import com.saemoonangodomain.MemberDetailVO;
 
-public interface MemberDetailDAO {
+public interface MemberDetailService {
 	public void insert(MemberDetailVO vo) throws Exception;
 	
 	//public List<MenuVO> select(Integer mno)throws Exception;

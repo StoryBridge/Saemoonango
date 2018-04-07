@@ -8,8 +8,8 @@
 		insert into memberdetail (GetPoint, Id, Qno) VALUES(#{GetPoint}, #{Id}, #{Qno})
 	</insert>
 
-	<select id="read" resultType="hashmap">
-
+	<select id="certificate" resultType="int">
+		select count(*) from memberdetail where id = #{Id} and qno = #{Qno}
 	</select>
 
 
@@ -21,6 +21,7 @@
 	<delete id="delete">
 		<!-- delete from tbl_ft_info where u_id = #{u_id} -->
 	</delete>
+
 
 
 

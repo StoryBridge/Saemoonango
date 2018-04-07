@@ -1,4 +1,4 @@
-package com.saemoonango.persistence;
+package com.saemoonango.service;
 
 import java.util.List;
 
@@ -6,17 +6,19 @@ import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.saemoonango.persistence.MemberDetailDAO;
 import com.saemoonangodomain.LocationVO;
 import com.saemoonangodomain.MemberDetailVO;
 
 @Repository
-public class MemberDetailDAOImpl implements MemberDetailDAO {
+public class MemberDetailServiceImpl implements MemberDetailService {
 	@Inject
-	private SqlSessionTemplate sqlsession;
+	private MemberDetailDAO dao;
 
 	@Override
 	public void insert(MemberDetailVO vo) throws Exception {
-		sqlsession.insert("com.zzennam.persistence.MemberDetailMapper.insert", vo);
+		dao.insert(vo);
 	}
 
 	@Override
@@ -39,13 +41,7 @@ public class MemberDetailDAOImpl implements MemberDetailDAO {
 
 	@Override
 	public boolean certificate(MemberDetailVO vo) throws Exception {
-		int certi = Integer.parseInt(sqlsession.selectList("com.zzennam.persistence.MemberDetailMapper.certificate", vo).get(0).toString());
-		System.out.println(certi);
-		if (certi > 0) {
-			return true;
-		} else
-			return false;
-
+		return dao.certificate(vo);
 	}
 
 }
