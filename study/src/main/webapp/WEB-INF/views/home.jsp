@@ -38,7 +38,7 @@
 <link rel="stylesheet"
 	href="https://unpkg.com/rmodal@1.0.28/dist/rmodal.css" type="text/css" />
 <script type="text/javascript"
-	src="https://unpkg.com/rmodal@1.0.26/dist/rmodal.js"></script>
+	src="vendor/jquery/rmodal.js"></script>
 <style type="text/css">
 .modal .modal-dialog {
 	width: 400px;
@@ -84,31 +84,45 @@
 				function(ev) {
 					ev.preventDefault();
 					//여기서부터!! 20180404
-
 					modal.open();
 				}, false);
 		document.getElementById('commit').addEventListener("click",
 				function(ev) {
 					ev.preventDefault();
 					let getAnswer = $("#answer").val();
-					console.log("commit answer: "+ getAnswer);					
 					let rightAnswer = $('#rightAnswer').html();
+					let point = $('#point').html();
+					let Qno = $('#Qno').html();
+					
+					console.log("commit answer: "+ getAnswer);					
 					console.log("rightAnswer is "+rightAnswer);
 					if(rightAnswer == getAnswer){
 						console.log("정답");
-						/* $.post("/answer", {answer: answer}, function(result){
-			            console.log("post.............");
-			       		}); */
+						$.ajaxSettings.traditional = true;
+						$.ajax({
+						    type: "POST",
+						    url : "/answer",
+						    data :{getGetPoint: point,
+						    	//Id 수정 해야함
+						    	Id: "zzennam",
+						    	Qno: Qno},
+						    contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						    dataType : "json",
+						    success : function(data){
+						        //Ajax 성공시
+						        console.log("POST SUCCESS");
+						    },error : function(){
+						        //Ajax 실패시
+						    	console.log("POST FAIL");
+						    }
+						});
 					}else{
-						console.log("땡");
-						let point = $('#point').html();
 						console.log("원점수: " + point);
 						point -= 1;
 						console.log("적용 점수: "+ point);
 						document.getElementById("point").innerHTML = point;
-						
-						
-						
+						ev.preventDefault();
+						alert("땡");
 					}
 				}, false);
 		window.modal = modal;
@@ -135,6 +149,7 @@
 						</div>
 					</div>
 					<p hidden id="rightAnswer"></p>
+					<p hidden id="Qno"></p>
 					<div class="modal-footer">
 						<button class="btn btn-primary" type="submit" id="commit"
 							onclick="modal.close();">Commit</button>

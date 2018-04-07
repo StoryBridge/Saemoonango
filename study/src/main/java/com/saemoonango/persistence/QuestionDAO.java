@@ -17,5 +17,7 @@ public interface QuestionDAO {
 		
 		public List<QuestionVO> read(int Qno) throws Exception;
 		
+		public void getPoint(int point) throws Exception;
+		
 	
 }

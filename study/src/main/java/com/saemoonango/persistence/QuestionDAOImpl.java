@@ -40,4 +40,10 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	}
 
+	@Override
+	public void getPoint(int point) throws Exception {
+		//sqlsession.insert("org.food.persistence.MemberMapper.insert", point);
+		
+	}
+
 }

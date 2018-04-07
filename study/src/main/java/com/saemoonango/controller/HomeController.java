@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.QuestionDAO;
+import com.saemoonangodomain.MemberDetailVO;
 
 /**
  * Handles requests for the application home page.
@@ -83,10 +85,12 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
-	public String getAnswer(String answer, RedirectAttributes rttr) throws Exception {
-		System.out.println(answer);
-		//System.out.println(rttr);
-		System.out.println("getAnswer Point is "+answer);
+	public String getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
+		System.out.println("Answer get.....");
+		System.out.println("getPoint " + vo.getGetPoint());
+		System.out.println("getId " + vo.getId());
+		System.out.println("getQno " + vo.getQno());
+		// System.out.println(rttr);
 
 		// rttr.addFlashAttribute("result", "success");
 		return "home";

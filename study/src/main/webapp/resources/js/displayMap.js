@@ -34,12 +34,10 @@ function displayMap(lat, lng) {
 			title : '<div>내위치</div>',
 			latlng : new daum.maps.LatLng(lat, lng)
 		});
-		$
-				.each(
+		$.each(
 						data.location,
 						function(i, location) {
-							positions
-									.push({
+							positions.push({
 										title : '<div>' + location.PlaceName
 												+ '</div>',
 										latlng : new daum.maps.LatLng(
@@ -50,17 +48,19 @@ function displayMap(lat, lng) {
 							if (Math.sqrt(Math.abs(disX * disX)
 									+ Math.abs(disY * disY)) < 0.0001) {
 								console.log(location.Lno + "번 문제내라!!!");
-								homeManager
-										.questionData(location.Lno, question);
+								homeManager.questionData(location.Lno, question);
 								function question(data) {
 									console.log("GET QUESTION");
 									console.log(data);
 									document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
 									document.getElementById("question").innerHTML = data.question[0].Question
 											+ ' <span id="point">'
-											+ data.question[0].Point + '</span>점';
+											+ data.question[0].Point
+											+ '</span>점';
 									document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
+									document.getElementById("Qno").innerHTML = data.question[0].Qno;
 									modal.open();
+
 								}
 							}
 						});
