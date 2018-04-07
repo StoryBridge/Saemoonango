@@ -37,6 +37,9 @@ public class HomeController {
 	private QuestionDAO qDao;
 	@Autowired // 스프링프레임워크에서만 작동 프레임워크의 종속성을 피하기 위해선 inject를 사용하자!
 	private LocationDAO lDao;
+	
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzennam.persistence.MemberDetailMapper">
+
+	<insert id="insert">
+		insert into memberdetail (GetPoint, Id, Qno) VALUES(#{GetPoint}, #{Id}, #{Qno})
+	</insert>
+
+	<select id="read" resultType="hashmap">
+
+	</select>
+
+
+	<update id="update">
+		<!-- update tbl_ft_info set u_pw=#{u_pw} , u_email=#{u_email}, u_phone=#{u_phone}, 
+			co_doc=#{co_doc} where u_id = #{u_id} -->
+	</update>
+
+	<delete id="delete">
+		<!-- delete from tbl_ft_info where u_id = #{u_id} -->
+	</delete>
+
+
+
+
+</mapper>

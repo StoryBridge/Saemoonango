@@ -5,6 +5,7 @@ public class MemberDetailVO {
 	private int GetPoint;
 	private String Id;
 	private int Qno;
+	
 	public int getMDno() {
 		return MDno;
 	}
