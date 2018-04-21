@@ -111,6 +111,8 @@
 						    success : function(data){
 						        //Ajax 성공시
 						        console.log("POST SUCCESS");
+						        console.log(data.already);
+						    	alert(data.already);
 						    },error : function(){
 						        //Ajax 실패시
 						    	console.log("POST FAIL");
