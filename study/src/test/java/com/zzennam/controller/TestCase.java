@@ -11,9 +11,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.saemoonango.persistence.LocationDAO;
+import com.saemoonango.persistence.MemberDAO;
+import com.saemoonango.persistence.MemberDAOImpl;
 import com.saemoonango.persistence.MemberDetailDAO;
+import com.saemoonango.persistence.MemberDetailDAOImpl;
 import com.saemoonango.persistence.QuestionDAO;
 import com.saemoonango.service.MemberDetailService;
+import com.saemoonango.service.MemberService;
+import com.saemoonango.service.MemberServiceImpl;
 import com.saemoonangodomain.MemberDetailVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,7 +33,8 @@ public class TestCase {
 	
 	@Inject
 	private MemberDetailService mDdao;
-	
+	@Inject
+	private MemberDetailDAOImpl mmdao;
 
 	@Test
 	public void read() throws Exception {
@@ -61,9 +67,18 @@ public class TestCase {
 		vo.setId("zzennam");
 		vo.setQno(3);
 		//있으면 true 없으면 false
-		System.out.println(mDdao.certificate(vo));
+		System.out.println(mDdao.certificate(vo));		
+	}
+	
+
+	@Inject
+	private MemberServiceImpl msi;
+	@Test
+	public void memberTotalPoint() throws Exception{
+		msi.totalPoint();
 		
 	}
+
 	
 
 }

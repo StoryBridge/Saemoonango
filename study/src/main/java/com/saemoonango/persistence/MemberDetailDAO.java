@@ -17,4 +17,5 @@ public interface MemberDetailDAO {
 	public List<LocationVO> read() throws Exception;
 	
 	public boolean certificate(MemberDetailVO vo) throws Exception;
+
 }

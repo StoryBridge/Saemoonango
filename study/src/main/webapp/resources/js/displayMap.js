@@ -34,8 +34,7 @@ function displayMap(lat, lng) {
 			title : '<div>내위치</div>',
 			latlng : new daum.maps.LatLng(lat, lng)
 		});
-		$.each(
-						data.location,
+		$.each(data.location,
 						function(i, location) {
 							positions.push({
 										title : '<div>' + location.PlaceName

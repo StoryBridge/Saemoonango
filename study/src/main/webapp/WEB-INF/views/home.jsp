@@ -47,7 +47,7 @@
 </style>
 <script type="text/javascript">
 	window.onload = function() {
-		var modal = new RModal(document.getElementById('modal'), {
+		let modal = new RModal(document.getElementById('modal'), {
 			//content: 'Abracadabra'
 			beforeOpen : function(next) {
 				//console.log('beforeOpen');
@@ -97,14 +97,14 @@
 					console.log("commit answer: "+ getAnswer);					
 					console.log("rightAnswer is "+rightAnswer);
 					if(rightAnswer == getAnswer){
-						console.log("정답");
+						console.log("정답"); //여기 확인 2018-0421
 						$.ajaxSettings.traditional = true;
 						$.ajax({
 						    type: "POST",
 						    url : "/answer",
-						    data :{getGetPoint: point,
+						    data :{getPoint: point,
 						    	//Id 수정 해야함
-						    	Id: "zzennam",
+						    	Id: "zzennam", 
 						    	Qno: Qno},
 						    contentType : "application/x-www-form-urlencoded; charset=utf-8",
 						    dataType : "json",
@@ -113,9 +113,11 @@
 						        console.log("POST SUCCESS");
 						        console.log(data.already);
 						    	alert(data.already);
+						    	//modal.open(); 나중에 모달로 바꾸자
 						    },error : function(){
 						        //Ajax 실패시
 						    	console.log("POST FAIL");
+						    	alert("전송 실패");
 						    }
 						});
 					}else{
@@ -432,12 +434,12 @@
 	<script src="js/home.js"></script>
 
 	<script>
-		var lat;
-		var lng;
+		let lat;
+		let lng;
 
 		$(document).ready(
 				function() {
-					var timestamp = new Date().getTime();
+					let timestamp = new Date().getTime();
 					console.log("****************************");
 					console.log("시작 시간: " + timestamp);
 					// Geolocation API에 액세스할 수 있는지를 확인
@@ -446,13 +448,13 @@
 						navigator.geolocation.getCurrentPosition(function(pos) {
 							$('#latitude').html(pos.coords.latitude); // 위도
 							$('#longitude').html(pos.coords.longitude); // 경도
-							var distance;
-							var disX = 37.446896 - 37.4469025;
-							var disY = 127.143955 - 127.14405579999999;
+							let distance;
+							let disX = 37.446896 - 37.4469025;
+							let disY = 127.143955 - 127.14405579999999;
 							//최소거리 0.0001
 							console.log(Math.sqrt(Math.abs(disX * disX)
 									+ Math.abs(disY * disY)));
-							var timestamp2 = new Date().getTime();
+							let timestamp2 = new Date().getTime();
 							console.log("****************************");
 							console.log("위도 경도 얻는 시간: "
 									+ (timestamp2 - timestamp));
@@ -465,6 +467,11 @@
 							//가정하기 사거리
 							lng = 127.145425;
 							lat = 37.44631;
+							
+							//가정하기 이마트
+							lng = 127.141704;
+							lat = 37.444107;
+							
 							displayMap(lat, lng);
 							playAlert = setInterval(function() {
 								//displayMap(lat, lng);
