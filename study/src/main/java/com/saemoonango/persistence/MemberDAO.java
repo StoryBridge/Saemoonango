@@ -11,6 +11,9 @@ public interface MemberDAO {
 	
 	//public void update(LocationVO vo)throws Exception;
 	
+	public void myLocation(MemberVO vo)throws Exception;
+
+	
 	//public void delete(LocationVO vo) throws Exception;
 	
 	public List<MemberVO> read() throws Exception;

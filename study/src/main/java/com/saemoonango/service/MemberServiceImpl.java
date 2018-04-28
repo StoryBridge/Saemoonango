@@ -11,6 +11,7 @@ import com.saemoonango.persistence.MemberDAO;
 import com.saemoonango.persistence.MemberDetailDAO;
 import com.saemoonangodomain.LocationVO;
 import com.saemoonangodomain.MemberDetailVO;
+import com.saemoonangodomain.MemberVO;
 
 @Repository
 public class MemberServiceImpl implements MemberService {
@@ -22,6 +23,17 @@ public class MemberServiceImpl implements MemberService {
 	public void totalPoint() throws Exception {
 		// TODO Auto-generated method stub
 		dao.totalPoint();		
+	}
+
+	@Override
+	public List<MemberVO> read() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.read();
+	}
+
+	@Override
+	public void myLocation(MemberVO vo) throws Exception {
+		dao.myLocation(vo);		
 	}
 
 
