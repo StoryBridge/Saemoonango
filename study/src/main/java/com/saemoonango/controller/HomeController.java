@@ -92,26 +92,27 @@ public class HomeController {
 		map.put("abcaa", "ddeeed");
 		return map;
 	}
-	
+
 	@CrossOrigin
 	@ResponseBody
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
-	public HashMap<String, Object>  getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
+	public HashMap<String, Object> getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
 		System.out.println("Answer get.....");
 		System.out.println("getPoint " + vo.getGetPoint());
 		System.out.println("getId " + vo.getId());
 		System.out.println("getQno " + vo.getQno());
-		
-		//ModelAndView model = new ModelAndView();
+
+		// ModelAndView model = new ModelAndView();
 
 		HashMap<String, Object> map = new HashMap<>();
-		//model.setViewName("home");
-		boolean certi = mDDao.certificate(vo);		
+		// model.setViewName("home");
+		boolean certi = mDDao.certificate(vo);
 		if (certi == true) {
 			System.out.println("푼문제임");
 			map.put("already", "이미 푼 문제입니다.");
-		}else{
+		} else {
 			System.out.println("안푼문제");
+			map.put("already", "정답입니다.");
 			mDDao.insert(vo);
 		}
 		// System.out.println(rttr);

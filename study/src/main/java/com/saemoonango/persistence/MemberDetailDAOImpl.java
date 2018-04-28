@@ -48,4 +48,6 @@ public class MemberDetailDAOImpl implements MemberDetailDAO {
 
 	}
 
+
+
 }
