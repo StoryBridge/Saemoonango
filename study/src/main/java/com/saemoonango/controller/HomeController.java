@@ -29,7 +29,10 @@ import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.QuestionDAO;
 import com.saemoonango.service.LocationService;
 import com.saemoonango.service.MemberDetailService;
+import com.saemoonango.service.MemberService;
+import com.saemoonangodomain.LocationVO;
 import com.saemoonangodomain.MemberDetailVO;
+import com.saemoonangodomain.MemberVO;
 
 /**
  * Handles requests for the application home page.
@@ -42,22 +45,22 @@ public class HomeController {
 	@Inject
 	private QuestionDAO qDao;
 	@Autowired // 스프링프레임워크에서만 작동 프레임워크의 종속성을 피하기 위해선 inject를 사용하자!
-	private LocationService lDao;
+	private LocationService lService;
 
 	@Inject
-	private MemberDetailService mDDao;
+	private MemberDetailService mDservice;
+	
+	@Inject
+	private MemberService mService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
 		String formattedDate = dateFormat.format(date);
 		System.out.println("HOME CONNECTED..............");
 		model.addAttribute("serverTime", formattedDate);
-
 		return "home";
 	}
 
@@ -77,9 +80,9 @@ public class HomeController {
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
 	public HashMap<String, Object> location() throws Exception {
 		HashMap<String, Object> locationData = new HashMap<>();
-		System.out.println("Location Loading............");
-		System.out.println(lDao.read().toString());
-		locationData.put("location", lDao.read());
+		//System.out.println("Location Loading............");
+		//System.out.println(lService.read().toString());
+		locationData.put("location", lService.read());
 		return locationData;
 	}
 
@@ -92,32 +95,49 @@ public class HomeController {
 		map.put("abcaa", "ddeeed");
 		return map;
 	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)
+	public HashMap<String, Object> memberList() throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		//System.out.println("memberlist CONNETED............");
+		map.put("memberlist", mService.read());
+		return map;
+	}
 
 	@CrossOrigin
 	@ResponseBody
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
 	public HashMap<String, Object> getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
-		System.out.println("Answer get.....");
-		System.out.println("getPoint " + vo.getGetPoint());
-		System.out.println("getId " + vo.getId());
-		System.out.println("getQno " + vo.getQno());
+		System.out.println(vo.toString());
 
 		// ModelAndView model = new ModelAndView();
 
 		HashMap<String, Object> map = new HashMap<>();
 		// model.setViewName("home");
-		boolean certi = mDDao.certificate(vo);
+		boolean certi = mDservice.certificate(vo);
 		if (certi == true) {
 			System.out.println("푼문제임");
 			map.put("already", "이미 푼 문제입니다.");
 		} else {
 			System.out.println("안푼문제");
 			map.put("already", "정답입니다.");
-			mDDao.insert(vo);
+			mDservice.insert(vo);
+			mService.totalPoint();			//맞춘 문제 합해서 member table 업데이트
 		}
 		// System.out.println(rttr);
 		// rttr.addFlashAttribute("result", "success");
 		return map;
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@RequestMapping(value = "/myLocation", method = RequestMethod.POST)
+	public void myLocation(MemberVO vo) throws Exception{
+		System.out.println("myLocation Connectedd..........");
+		System.out.println(vo.toString());
+		mService.myLocation(vo);
 	}
 
 }

@@ -36,6 +36,13 @@ public class TestCase {
 	@Inject
 	private MemberDetailDAOImpl mmdao;
 
+	@Inject
+	private MemberServiceImpl mService;
+	@Test
+	public void memberList() throws Exception{
+		System.out.println(mService.read());
+	}
+	
 	@Test
 	public void read() throws Exception {
 		System.out.println(dao.read(1));
