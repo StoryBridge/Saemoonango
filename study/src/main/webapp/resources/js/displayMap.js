@@ -59,17 +59,28 @@ function displayMap(lat, lng, id) {
 					modal.open();
 				}
 			}
-		});		
+		});
 		//console.log(positions);
 
 		// 다른 유저들 데이터 호출
 		homeManager.memberlist(id, members);
-		console.log("positions.........");
-		console.log(positions);
-		
+		function members(membersData) {
+			console.log("members connected.....");
+			let memberlist = membersData.memberlist;
+			console.log(memberlist);
+			let memberlistArray = [];
+			$.each(data.location, function (i, location) {
+				memberlistArray.push({
+					title: '<div>' + memberlist.name + '</div>',
+					latlng: new daum.maps.LatLng(memberlist.Lng, memberlist.Lat)
+				});
+			});
+			
 
-	
-		
+		}
+
+
+
 		// 내 위치
 		var imageSrc1 = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
 			// 마커이미지의 주소입니다
