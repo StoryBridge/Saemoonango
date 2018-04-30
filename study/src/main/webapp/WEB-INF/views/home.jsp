@@ -432,12 +432,12 @@
 
 	<script src="js/host.js"></script>
 	<script src="js/home.js"></script>
-	<script src="js/myLocation.js"></script>
+	<script src="js/location.js"></script>
+	<script src="js/member.js"></script>
 
 	<script>
 		let lat;
 		let lng;
-
 		$(document).ready(function() {
 					//let timestamp = new Date().getTime();
 					//console.log("****************************");
@@ -474,7 +474,7 @@
 							//lat = 37.444107;
 
 							let id = 4;						
-							displayMap(lat, lng);
+							displayMap(lat, lng, id);
 							myLocation(lat, lng, id);
 
 							

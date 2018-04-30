@@ -11,7 +11,7 @@
 	</insert>
 
 	<select id="read" resultType="hashmap">
-		select id, name, totalpoint, Lat, Lng, Img from member
+		select id, name, totalpoint, Lat, Lng, Img from member where id != #{Id}
 	</select>
 	
 	<update id="totalPoint">

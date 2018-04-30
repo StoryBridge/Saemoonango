@@ -23,9 +23,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> read() throws Exception {
+	public List<MemberVO> read(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList("com.zzennam.persistence.MemberMapper.read");
+		return sqlsession.selectList("com.zzennam.persistence.MemberMapper.read", id);
 	}
 
 	@Override

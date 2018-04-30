@@ -16,14 +16,14 @@ var homeManager = (function () {
 		$.getJSON(host + '/question/' + lno, callback);
 	}
 
-	function membersData(callback) {
-		$.getJSON(host + '/memberlist', callback);
+	function memberlist(id, callback) {
+		$.getJSON(host + '/memberlist/' + id, callback);
 	}
 
 	return {
 		myLocation : myLocation,
 		locationData: locationData,
 		questionData: questionData,
-		membersData: membersData
+		memberlist: memberlist
 	}
 })();

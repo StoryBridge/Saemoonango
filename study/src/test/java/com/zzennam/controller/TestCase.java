@@ -40,7 +40,8 @@ public class TestCase {
 	private MemberServiceImpl mService;
 	@Test
 	public void memberList() throws Exception{
-		System.out.println(mService.read());
+		String id = "4";
+		System.out.println(mService.read(id));
 	}
 	
 	@Test

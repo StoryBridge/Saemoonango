@@ -69,8 +69,8 @@ public class HomeController {
 	@RequestMapping(value = "/question/{lno}", method = RequestMethod.GET)
 	public HashMap<String, Object> question(@PathVariable int lno) throws Exception {
 		HashMap<String, Object> questionData = new HashMap<>();
-		System.out.println("Question Conneted......");
-		System.out.println(qDao.read(lno));
+		//System.out.println("Question Conneted......");
+		//System.out.println(qDao.read(lno));
 		questionData.put("question", qDao.read(lno));
 		return questionData;
 	}
@@ -98,11 +98,11 @@ public class HomeController {
 	
 	@CrossOrigin
 	@ResponseBody
-	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)
-	public HashMap<String, Object> memberList() throws Exception {
+	@RequestMapping(value = "/memberlist/{id}", method = RequestMethod.GET)
+	public HashMap<String, Object> memberList(@PathVariable String id) throws Exception {
 		HashMap<String, Object> map = new HashMap<>();
-		//System.out.println("memberlist CONNETED............");
-		map.put("memberlist", mService.read());
+		System.out.println("memberlist CONNETED..... id is " + id);
+		map.put("memberlist", mService.read(id));
 		return map;
 	}
 
@@ -110,10 +110,8 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
 	public HashMap<String, Object> getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
-		System.out.println(vo.toString());
-
+		//System.out.println(vo.toString());
 		// ModelAndView model = new ModelAndView();
-
 		HashMap<String, Object> map = new HashMap<>();
 		// model.setViewName("home");
 		boolean certi = mDservice.certificate(vo);
