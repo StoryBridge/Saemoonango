@@ -16,7 +16,7 @@ public interface MemberDAO {
 	
 	//public void delete(LocationVO vo) throws Exception;
 	
-	public List<MemberVO> read() throws Exception;
+	public List<MemberVO> read(String id) throws Exception;
 	
 	//public boolean certificate(MemberDetailVO vo) throws Exception;
 	

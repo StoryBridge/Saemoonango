@@ -26,9 +26,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> read() throws Exception {
+	public List<MemberVO> read(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.read();
+		return dao.read(id);
 	}
 
 	@Override

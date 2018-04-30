@@ -1,11 +1,12 @@
-function myLocation(lat, lng, id){
-     $.ajax({
+function myLocation(lat, lng, id) {
+    console.log("mylocation connected..." + lat + " " + lng + " " + id);
+    $.ajax({
         type: "POST",
         url: "/myLocation",
-        data: {            
+        data: {
             Id: id,
-            lat: lat,
-            lng: lng
+            lat: lng,
+            lng: lat
         },
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         dataType: "json",
@@ -14,7 +15,7 @@ function myLocation(lat, lng, id){
             console.log("myLocation POST SUCCESS");
         }, error: function () {
             //Ajax 실패시
-            console.log("myLocation POST FAIL");      
+            console.log("myLocation POST FAIL");
         }
     });
 }

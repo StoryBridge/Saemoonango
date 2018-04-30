@@ -1,4 +1,4 @@
-function displayMap(lat, lng) {
+function displayMap(lat, lng, id) {
 	//var timestamp2 = new Date().getTime();
 	//console.log("****************************");
 	//console.log("dispayMap 시간: " + timestamp2);
@@ -42,8 +42,9 @@ function displayMap(lat, lng) {
 			});
 			disX = location.Lng - lat;
 			disY = location.Lat - lng;
+			//문제 호출
 			if (Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)) < 0.0001) {
-				console.log(location.Lno + "번 문제내라!!!");
+				console.log(location.Lno + "번 문제");
 				homeManager.questionData(location.Lno, question);
 				function question(data) {
 					console.log("GET QUESTION");
@@ -62,10 +63,11 @@ function displayMap(lat, lng) {
 		//console.log(positions);
 
 		// 다른 유저들 데이터 호출
-		homeManager.membersData(members);
-		function members(membersData) {
-			console.log(membersData);
-		}
+		homeManager.memberlist(id, members);
+		console.log("positions.........");
+		console.log(positions);
+		
+
 	
 		
 		// 내 위치
