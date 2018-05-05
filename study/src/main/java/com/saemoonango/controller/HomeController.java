@@ -52,7 +52,12 @@ public class HomeController {
 	
 	@Inject
 	private MemberService mService;
-
+	
+	@RequestMapping(value = "/example", method = RequestMethod.GET)
+	public String example(Locale locale, Model model) {
+		return "example";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
