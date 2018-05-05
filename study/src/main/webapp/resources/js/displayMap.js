@@ -38,7 +38,8 @@ function displayMap(lat, lng, id) {
 		$.each(data.location, function (i, location) {
 			positions.push({
 				title: '<div>' + location.PlaceName + '</div>',
-				latlng: new daum.maps.LatLng(location.Lng, location.Lat)
+				latlng: new daum.maps.LatLng(location.
+					Lng, location.Lat)
 			});
 			disX = location.Lng - lat;
 			disY = location.Lat - lng;
@@ -66,15 +67,15 @@ function displayMap(lat, lng, id) {
 		homeManager.memberlist(id, members);
 		function members(membersData) {
 			console.log("members connected.....");
-			let memberlist = membersData.memberlist;
-			console.log(memberlist);
 			let memberlistArray = [];
-			$.each(data.location, function (i, location) {
+			$.each(membersData.memberlist, function (i, memberlist) {
 				memberlistArray.push({
 					title: '<div>' + memberlist.name + '</div>',
-					latlng: new daum.maps.LatLng(memberlist.Lng, memberlist.Lat)
+					latlng: new daum.maps.LatLng(memberlist.Lng, memberlist.Lat),
+					Img: memberlist.Img
 				});
 			});
+			console.log(memberlistArray);
 			
 
 		}
