@@ -138,8 +138,8 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/myLocation", method = RequestMethod.POST)
 	public void myLocation(MemberVO vo) throws Exception{
-		System.out.println("myLocation Connectedd..........");
-		System.out.println(vo.toString());
+		//	System.out.println("myLocation Connectedd..........");
+		//System.out.println(vo.toString());
 		mService.myLocation(vo);
 	}
 
