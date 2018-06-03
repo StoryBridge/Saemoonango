@@ -102,6 +102,14 @@ if (request.getProtocol().equals("HTTP/1.1"))
 				function(ev) {
 					ev.preventDefault();
 					//여기서부터!! 20180404
+					
+					console.log("모달 오픈");
+					console.log(sessionStorage.getItem("modalFlag"));
+					sessionStorage.removeItem("modalFlag");
+					sessionStorage.setItem("modalFlag", true);
+					console.log(sessionStorage.getItem("modalFlag"));
+					
+					
 					modal.open();
 				}, false);
 		document.getElementById('commit').addEventListener("click",
@@ -476,23 +484,27 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							//console.log(lng);
 							//지도부분
 							//가정하기 사거리
-							//lng = 127.145425;
-							//lat = 37.44631;
+							lng = 127.145425;
+							lat = 37.44631;
 							
-							lat = 37.443663;
-							lng = 127.141979;
+							//lat = 37.443663;
+							//lng = 127.141979;
 							//가정하기 이마트
-							lng = 127.141704;
-							lat = 37.444107;
+							//lng = 127.141704;
+							//lat = 37.444107;
 
-							let id = 4;						
+							let id = 5;						
 							displayMap(lat, lng, id);
 							myLocation(lat, lng, id);
-
 							
-							playAlert = setInterval(function() {
-								//displayMap(lat, lng);
-								//myLocation(lat, lng, id);
+							//lock 걸기 time 계속 안돌게
+							sessionStorage.setItem("modalFlag", false);
+							playAlert = setInterval(function() {								
+								console.log(sessionStorage.getItem("modalFlag"));
+								if(sessionStorage.getItem("modalFlag") == false){
+								displayMap(lat, lng);
+								myLocation(lat, lng, id);
+								}
 							}, 5000);
 
 							//console.log("getJson Data Start");
