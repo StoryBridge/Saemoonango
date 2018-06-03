@@ -57,7 +57,7 @@ function displayMap(lat, lng, id) {
 						+ '</span>점';
 					document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
 					document.getElementById("Qno").innerHTML = data.question[0].Qno;
-					modal.open();
+					modal.open();					
 				}
 			}
 		});

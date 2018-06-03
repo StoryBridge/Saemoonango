@@ -45,6 +45,16 @@ if (request.getProtocol().equals("HTTP/1.1"))
 
 <link rel="stylesheet"
 	href="https://unpkg.com/rmodal@1.0.28/dist/rmodal.css" type="text/css" />
+	
+		<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Custom scripts for this template -->
+	<script src="js/resume.min.js"></script>
+	
+	
 <script type="text/javascript"
 	src="vendor/jquery/rmodal.js"></script>
 <style type="text/css">
@@ -55,7 +65,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 </style>
 <script type="text/javascript">
 	window.onload = function() {
-		let modal = new RModal(document.getElementById('modal'), {
+		var modal = new RModal(document.getElementById('modal'), {
 			//content: 'Abracadabra'
 			beforeOpen : function(next) {
 				//console.log('beforeOpen');
@@ -92,6 +102,14 @@ if (request.getProtocol().equals("HTTP/1.1"))
 				function(ev) {
 					ev.preventDefault();
 					//여기서부터!! 20180404
+					
+					console.log("모달 오픈");
+					console.log(sessionStorage.getItem("modalFlag"));
+					sessionStorage.removeItem("modalFlag");
+					sessionStorage.setItem("modalFlag", true);
+					console.log(sessionStorage.getItem("modalFlag"));
+					
+					
 					modal.open();
 				}, false);
 		document.getElementById('commit').addEventListener("click",
@@ -425,13 +443,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 
 
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- Plugin JavaScript -->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-	<!-- Custom scripts for this template -->
-	<script src="js/resume.min.js"></script>
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b5474cbf83da15f638ea76b63ed04c3"></script>
 	<script src="js/displayMap.js"></script>
@@ -472,23 +484,27 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							//console.log(lng);
 							//지도부분
 							//가정하기 사거리
-							//lng = 127.145425;
-							//lat = 37.44631;
+							lng = 127.145425;
+							lat = 37.44631;
 							
-							lat = 37.443663;
-							lng = 127.141979;
+							//lat = 37.443663;
+							//lng = 127.141979;
 							//가정하기 이마트
 							//lng = 127.141704;
 							//lat = 37.444107;
 
-							let id = 4;						
+							let id = 5;						
 							displayMap(lat, lng, id);
 							myLocation(lat, lng, id);
-
 							
-							playAlert = setInterval(function() {
-								//displayMap(lat, lng);
-								//myLocation(lat, lng, id);
+							//lock 걸기 time 계속 안돌게
+							sessionStorage.setItem("modalFlag", false);
+							playAlert = setInterval(function() {								
+								console.log(sessionStorage.getItem("modalFlag"));
+								if(sessionStorage.getItem("modalFlag") == false){
+								displayMap(lat, lng);
+								myLocation(lat, lng, id);
+								}
 							}, 5000);
 
 							//console.log("getJson Data Start");
