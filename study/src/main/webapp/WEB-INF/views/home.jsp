@@ -101,16 +101,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 		document.getElementById('showModal').addEventListener("click",
 				function(ev) {
 					ev.preventDefault();
-					//여기서부터!! 20180404
-					
-					console.log("모달 오픈");
-					console.log(sessionStorage.getItem("modalFlag"));
-					sessionStorage.removeItem("modalFlag");
-					sessionStorage.setItem("modalFlag", true);
-					console.log(sessionStorage.getItem("modalFlag"));
-					
-					
-					modal.open();
+					//여기서부터!! 20180404modal.open();
 				}, false);
 		document.getElementById('commit').addEventListener("click",
 				function(ev) {
@@ -122,6 +113,15 @@ if (request.getProtocol().equals("HTTP/1.1"))
 					
 					console.log("commit answer: "+ getAnswer);					
 					console.log("rightAnswer is "+rightAnswer);
+					
+
+					//console.log("모달 오픈");
+					//console.log(sessionStorage.getItem("modalFlag"));
+					//sessionStorage.removeItem("modalFlag");
+					//sessionStorage.setItem("modalFlag", true);
+					//console.log(sessionStorage.getItem("modalFlag"));
+					
+					
 					if(rightAnswer == getAnswer){
 						console.log("정답"); //여기 확인 2018-0421
 						$.ajaxSettings.traditional = true;
@@ -484,26 +484,26 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							//console.log(lng);
 							//지도부분
 							//가정하기 사거리
-							lng = 127.145425;
-							lat = 37.44631;
+							//lng = 127.145425;
+							//lat = 37.44631;
 							
 							//lat = 37.443663;
 							//lng = 127.141979;
 							//가정하기 이마트
-							//lng = 127.141704;
-							//lat = 37.444107;
+							lng = 127.141704;
+							lat = 37.444107;
 
-							let id = 5;						
+							let id = 4;						
 							displayMap(lat, lng, id);
 							myLocation(lat, lng, id);
 							
 							//lock 걸기 time 계속 안돌게
 							sessionStorage.setItem("modalFlag", false);
-							playAlert = setInterval(function() {								
-								console.log(sessionStorage.getItem("modalFlag"));
-								if(sessionStorage.getItem("modalFlag") == false){
-								displayMap(lat, lng);
-								myLocation(lat, lng, id);
+							playAlert = setInterval(function() {	
+								let modalFlag = sessionStorage.getItem("modalFlag");								
+								if(modalFlag == "false"){									
+									displayMap(lat, lng);
+									myLocation(lat, lng, id);
 								}
 							}, 5000);
 
