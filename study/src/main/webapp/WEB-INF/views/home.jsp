@@ -77,6 +77,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 				next();
 			},
 			afterOpen : function() {
+				
 				//console.log('opened');
 			}
 
