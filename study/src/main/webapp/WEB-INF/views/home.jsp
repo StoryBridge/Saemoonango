@@ -68,7 +68,12 @@ if (request.getProtocol().equals("HTTP/1.1"))
 		var modal = new RModal(document.getElementById('modal'), {
 			//content: 'Abracadabra'
 			beforeOpen : function(next) {
-				//console.log('beforeOpen');
+				//console.log("모달 오픈");
+				console.log(sessionStorage.getItem("modalFlag"));
+				sessionStorage.removeItem("modalFlag");
+				sessionStorage.setItem("modalFlag", true);
+				console.log(sessionStorage.getItem("modalFlag"));
+				console.log('beforeOpen');
 				next();
 			},
 			afterOpen : function() {
@@ -81,7 +86,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
 				next();
 			},
 			afterClose : function() {
-				//console.log('closed');
+				console.log('afterClosed');
+				sessionStorage.removeItem("modalFlag");
+				sessionStorage.setItem("modalFlag", false);
 			}
 		// , bodyClass: 'modal-open'
 		// , dialogClass: 'modal-dialog'
