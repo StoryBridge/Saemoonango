@@ -32,6 +32,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public void myLocation(MemberVO vo) throws Exception {
 		sqlsession.update("com.zzennam.persistence.MemberMapper.myLocation", vo);		
 	}
+	@Override
+	public List<MemberVO> memberList() throws Exception{
+		return sqlsession.selectList("com.zzennam.persistence.MemberMapper.memberList");
+	}
 
 
 

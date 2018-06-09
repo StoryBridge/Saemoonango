@@ -45,11 +45,11 @@ function displayMap(lat, lng, id) {
 			disY = location.Lat - lng;
 			//문제 호출
 			if (Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)) < 0.0001) {
-				console.log(location.Lno + "번 문제");
+				//console.log(location.Lno + "번 문제");
 				homeManager.questionData(location.Lno, question);
 				function question(data) {
-					console.log("GET QUESTION");
-					console.log(data);
+					//console.log("GET QUESTION");
+					//console.log(data);
 					document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
 					document.getElementById("question").innerHTML = data.question[0].Question
 						+ ' <span id="point">'
@@ -75,9 +75,7 @@ function displayMap(lat, lng, id) {
 					Img: memberlist.Img
 				});
 			});
-			console.log(memberlistArray);
-			
-
+			//console.log(memberlistArray);
 		}
 
 
@@ -121,13 +119,10 @@ function displayMap(lat, lng, id) {
 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
 		for (var i = 1; i < positions.length; i++) {
-
 			// 마커 이미지의 이미지 크기 입니다
 			var imageSize = new daum.maps.Size(24, 35);
-
 			// 마커 이미지를 생성합니다
 			var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-
 			// 마커를 생성합니다
 			var marker = new daum.maps.Marker({
 				map: map, // 마커를 표시할 지도

@@ -74,8 +74,6 @@ public class HomeController {
 	@RequestMapping(value = "/question/{lno}", method = RequestMethod.GET)
 	public HashMap<String, Object> question(@PathVariable int lno) throws Exception {
 		HashMap<String, Object> questionData = new HashMap<>();
-		//System.out.println("Question Conneted......");
-		//System.out.println(qDao.read(lno));
 		questionData.put("question", qDao.read(lno));
 		return questionData;
 	}
@@ -85,8 +83,6 @@ public class HomeController {
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
 	public HashMap<String, Object> location() throws Exception {
 		HashMap<String, Object> locationData = new HashMap<>();
-		//System.out.println("Location Loading............");
-		//System.out.println(lService.read().toString());
 		locationData.put("location", lService.read());
 		return locationData;
 	}

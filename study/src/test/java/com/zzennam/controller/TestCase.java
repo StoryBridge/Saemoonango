@@ -86,6 +86,16 @@ public class TestCase {
 		msi.totalPoint();
 		
 	}
+	
+	void solve(double meal_cost, int tip_percent, int tax_percent) {
+	    
+	    int totalCost = 0;
+	    totalCost = (int) (meal_cost +  meal_cost * (tip_percent/100) + meal_cost * (tax_percent/100));
+	 
+	    System.out.println("The total meal cost is "+ totalCost +" dollars.");
+
+
+	}
 
 	
 
