@@ -69,11 +69,11 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			//content: 'Abracadabra'
 			beforeOpen : function(next) {
 				//console.log("모달 오픈");
-				console.log(sessionStorage.getItem("modalFlag"));
+				//console.log(sessionStorage.getItem("modalFlag"));
 				sessionStorage.removeItem("modalFlag");
 				sessionStorage.setItem("modalFlag", true);
-				console.log(sessionStorage.getItem("modalFlag"));
-				console.log('beforeOpen');
+				//console.log(sessionStorage.getItem("modalFlag"));
+				//console.log('beforeOpen');
 				next();
 			},
 			afterOpen : function() {				
@@ -86,7 +86,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 				next();
 			},
 			afterClose : function() {
-				console.log('afterClosed');
+				//console.log('afterClosed');
 				sessionStorage.removeItem("modalFlag");
 				sessionStorage.setItem("modalFlag", false);
 			}
@@ -117,20 +117,10 @@ if (request.getProtocol().equals("HTTP/1.1"))
 					let rightAnswer = $('#rightAnswer').html();
 					let point = $('#point').html();
 					let Qno = $('#Qno').html();
-					
-					console.log("commit answer: "+ getAnswer);					
-					console.log("rightAnswer is "+rightAnswer);
-					
-
-					//console.log("모달 오픈");
-					//console.log(sessionStorage.getItem("modalFlag"));
-					//sessionStorage.removeItem("modalFlag");
-					//sessionStorage.setItem("modalFlag", true);
-					//console.log(sessionStorage.getItem("modalFlag"));
-					
-					
+					//console.log("commit answer: "+ getAnswer);					
+					//console.log("rightAnswer is "+rightAnswer);
 					if(rightAnswer == getAnswer){
-						console.log("정답"); //여기 확인 2018-0421
+						//console.log("정답"); //여기 확인 2018-0421
 						$.ajaxSettings.traditional = true;
 						$.ajax({
 						    type: "POST",
@@ -154,9 +144,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
 						    }
 						});
 					}else{
-						console.log("원점수: " + point);
+						//console.log("원점수: " + point);
 						point -= 1;
-						console.log("적용 점수: "+ point);
+						//console.log("적용 점수: "+ point);
 						document.getElementById("point").innerHTML = point;
 						ev.preventDefault();
 						alert("땡");
@@ -479,8 +469,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							let disX = 37.446896 - 37.4469025;
 							let disY = 127.143955 - 127.14405579999999;
 							//최소거리 0.0001
-							console.log(Math.sqrt(Math.abs(disX * disX)
-									+ Math.abs(disY * disY)));
+							//console.log(Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)));
 							//let timestamp2 = new Date().getTime();
 							//console.log("****************************");
 							//console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
