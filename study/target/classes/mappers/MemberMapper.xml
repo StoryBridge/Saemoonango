@@ -14,6 +14,10 @@
 		select id, name, totalpoint, Lat, Lng, Img from member where id != #{Id}
 	</select>
 	
+	<select id="memberList" resultType="hashmap">
+		select id, name, totalpoint from member order by totalpoint desc
+	</select>
+	
 	<update id="totalPoint">
 	     update member set totalpoint = (select sum(getPoint) from memberdetail where member.Id = memberdetail.id)
 	</update>

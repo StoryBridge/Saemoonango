@@ -22,4 +22,6 @@ public interface MemberDAO {
 	
 	public void totalPoint() throws Exception;
 	
+	public List<MemberVO> memberList() throws Exception;
+	
 }

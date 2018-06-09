@@ -149,6 +149,8 @@ if (request.getProtocol().equals("HTTP/1.1"))
 						//console.log("적용 점수: "+ point);
 						document.getElementById("point").innerHTML = point;
 						ev.preventDefault();
+						sessionStorage.removeItem("modalFlag");
+						sessionStorage.setItem("modalFlag", false);
 						alert("땡");
 					}
 				}, false);
@@ -488,6 +490,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							//가정하기 이마트
 							lng = 127.141704;
 							lat = 37.444107;
+							
+							lng = 127.145604;
+							lat = 37.450152;
 
 							let id = 4;						
 							displayMap(lat, lng, id);

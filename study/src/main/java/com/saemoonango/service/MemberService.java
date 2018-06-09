@@ -22,4 +22,6 @@ public interface MemberService {
 	//public boolean certificate(MemberDetailVO vo) throws Exception;
 	
 	public void totalPoint() throws Exception;
+	
+	public List<MemberVO> memberList() throws Exception;
 }

@@ -35,6 +35,11 @@ public class MemberServiceImpl implements MemberService {
 	public void myLocation(MemberVO vo) throws Exception {
 		dao.myLocation(vo);		
 	}
+	@Override
+	public List<MemberVO> memberList() throws Exception{
+		return dao.memberList();
+	}
+
 
 
 	
