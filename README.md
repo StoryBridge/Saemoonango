@@ -20,3 +20,7 @@
 - 서버, DB (무료 PaaS 찾는 중)
 - 도메인
 - SSL
+
+#사용 기술
+- js Module Pattern
+- Rest API
