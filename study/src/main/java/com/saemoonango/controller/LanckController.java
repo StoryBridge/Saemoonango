@@ -1,9 +1,14 @@
 package com.saemoonango.controller;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +32,10 @@ public class LanckController {
 		return rank;
 	}
 
-	
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public String home() {				
+		return "chart";
+	}
 
 
 
