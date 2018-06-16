@@ -49,22 +49,23 @@ public class HomeController {
 
 	@Inject
 	private MemberDetailService mDservice;
-	
+
 	@Inject
 	private MemberService mService;
-	
+
 	@RequestMapping(value = "/example", method = RequestMethod.GET)
 	public String example(Locale locale, Model model) {
 		return "example";
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
-		System.out.println("HOME CONNECTED..............");
+		// System.out.println("HOME CONNECTED..............");
+		logger.debug("debug");
 		model.addAttribute("serverTime", formattedDate);
 		return "home";
 	}
@@ -92,17 +93,17 @@ public class HomeController {
 	@RequestMapping(value = "/json", method = RequestMethod.GET)
 	public HashMap<String, Object> json() {
 		HashMap<String, Object> map = new HashMap<>();
-		System.out.println("JSON CONNETED............");
+		// System.out.println("JSON CONNETED............");
 		map.put("abcaa", "ddeeed");
 		return map;
 	}
-	
+
 	@CrossOrigin
 	@ResponseBody
 	@RequestMapping(value = "/memberlist/{id}", method = RequestMethod.GET)
 	public HashMap<String, Object> memberList(@PathVariable String id) throws Exception {
 		HashMap<String, Object> map = new HashMap<>();
-		System.out.println("memberlist CONNETED..... id is " + id);
+		// System.out.println("memberlist CONNETED..... id is " + id);
 		map.put("memberlist", mService.read(id));
 		return map;
 	}
@@ -111,31 +112,31 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
 	public HashMap<String, Object> getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
-		//System.out.println(vo.toString());
+		// System.out.println(vo.toString());
 		// ModelAndView model = new ModelAndView();
 		HashMap<String, Object> map = new HashMap<>();
 		// model.setViewName("home");
 		boolean certi = mDservice.certificate(vo);
 		if (certi == true) {
-			System.out.println("푼문제임");
+			// System.out.println("푼문제임");
 			map.put("already", "이미 푼 문제입니다.");
 		} else {
-			System.out.println("안푼문제");
+			// System.out.println("안푼문제");
 			map.put("already", "정답입니다.");
 			mDservice.insert(vo);
-			mService.totalPoint();			//맞춘 문제 합해서 member table 업데이트
+			mService.totalPoint(); // 맞춘 문제 합해서 member table 업데이트
 		}
 		// System.out.println(rttr);
 		// rttr.addFlashAttribute("result", "success");
 		return map;
 	}
-	
+
 	@CrossOrigin
 	@ResponseBody
 	@RequestMapping(value = "/myLocation", method = RequestMethod.POST)
-	public void myLocation(MemberVO vo) throws Exception{
-		//	System.out.println("myLocation Connectedd..........");
-		//System.out.println(vo.toString());
+	public void myLocation(MemberVO vo) throws Exception {
+		// System.out.println("myLocation Connectedd..........");
+		// System.out.println(vo.toString());
 		mService.myLocation(vo);
 	}
 

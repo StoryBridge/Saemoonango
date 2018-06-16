@@ -21,22 +21,20 @@ import com.saemoonango.service.MemberService;
 public class LanckController {
 	@Inject
 	private MemberService mService;
-	
+
 	@CrossOrigin
 	@ResponseBody
 	@RequestMapping(value = "/rank", method = RequestMethod.GET)
 	public HashMap<String, Object> rank() throws Exception {
 		HashMap<String, Object> rank = new HashMap<>();
-		System.out.println("connect rank.....");
+		// System.out.println("connect rank.....");
 		rank.put("rank", mService.memberList());
 		return rank;
 	}
 
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String home() {				
+	public String home() {
 		return "chart";
 	}
-
-
 
 }
