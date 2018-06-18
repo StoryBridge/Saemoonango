@@ -62,18 +62,57 @@ h2 {
 			}
 		})();
 		charData.getRank(getData);
+		let options1 = {};
 		function getData(data) {
-			console.log(data);
-			let rank = [];
-			console.log(data.rank.length);
-			console.log(data.rank);
-			console.log(data.rank[0]);
-			console.log(data.rank[0].name);
-			for (let i = 0; i < data.rank.length; i++) {
+			//console.log(data);
 
+			let legend = {};
+			let names = [];
+			let hrefs = [
+					'http://nuli.navercorp.com/sharing/blog/post/1132444',
+					'http://nuli.navercorp.com/sharing/blog/post/1132442',
+					'http://nuli.navercorp.com/sharing/blog/post/1132439',
+					'http://nuli.navercorp.com/sharing/blog/post/1132426',
+					'http://nuli.navercorp.com/sharing/blog/post/1115205',
+					'http://nuli.navercorp.com/sharing/blog/post/1111811',
+					'http://nuli.navercorp.com/sharing/blog/post/1111181',
+					'http://nuli.navercorp.com/sharing/blog/post/1096163',
+					'http://nuli.navercorp.com/sharing/blog/post/1079940' ];
+			let title = [];
+			let values = [];
+			let dataset = {};
+			dataset.title = 'Seamoonan rank per time';
+			for (let i = 0; i < data.rank.length; i++) {
+				names.push(data.rank[i].name);
+				values.push(data.rank[i].totalpoint);
 			}
+			/* 			console.log("--------");
+			 console.log(names);
+			 console.log(values);
+			 console.log("--------"); */
+
+			dataset.values = values;
+			dataset.colorset = [ '#DC143C', '#FF8C00', "#30a1ce" ];
+			legend.names = names;
+			legend.hrefs = hrefs;			
+			options1.legend = legend;
+			options1.dataset = dataset;
+			options1.charDiv = 'Nwagon';
+			options1.charType = 'column';
+			options1.chartSize = {
+				width : 700,
+				height : 300
+			};
+			options1.maxValue = 1000;
+			options1.increment = 10;
+			
+
+			Nwagon.chart(options1);
+			console.log(options1);
 
 		}
+		//console.log(options1);
+		//Nwagon.chart(options1);
 
 		// 여기 잘 모르겟음 나중에 구현해볼 것
 		/* 		(function() {
@@ -92,6 +131,14 @@ h2 {
 		 //return version;
 		 }
 		 }()); */
+
+		/* 		var name11 = [];
+		 for (var i = 0; i < 5; i++) {
+		 name11.push(i);
+		 console.log(name11[i]);
+		 }
+		 console.log('ddddddddddd');
+		 console.log(name11); */
 
 		var options = {
 			'legend' : {
