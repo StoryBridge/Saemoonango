@@ -3,6 +3,7 @@
  */
 function chartData(){
 	console.log("chartData connected....");
+	$("#chart").empty();
 	homeManager.getRank(getData);
 	let options1 = {};
 	function getData(data) {
