@@ -28,7 +28,6 @@ var CONST_MAX_RADIUS = 100;
 var CONST_DECREMENT = 20;
 
 var Nwagon = {    
-
     chart: function(options){
         var isIE_old = false;
         if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) { //test for MSIE x.x;
