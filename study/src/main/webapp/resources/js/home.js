@@ -19,11 +19,15 @@ var homeManager = (function () {
 	function memberlist(id, callback) {
 		$.getJSON(host + '/memberlist/' + id, callback);
 	}
+	function getRank(callback) {
+		$.getJSON(host + '/rank', callback);
+	}
 
 	return {
 		myLocation : myLocation,
 		locationData: locationData,
 		questionData: questionData,
-		memberlist: memberlist
+		memberlist: memberlist,
+		getRank : getRank
 	}
 })();

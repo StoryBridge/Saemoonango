@@ -51,6 +51,7 @@ h2 {
 
 <body>
 	<div id="Nwagon"></div>
+	<div id="Nwagon1"></div>
 	<script>
 		var charData = (function() {
 			var host = "http://localhost:8080";
@@ -97,14 +98,14 @@ h2 {
 			legend.hrefs = hrefs;			
 			options1.legend = legend;
 			options1.dataset = dataset;
-			options1.charDiv = 'Nwagon';
-			options1.charType = 'column';
+			options1.chartDiv = 'Nwagon1';
+			options1.chartType = 'column';
 			options1.chartSize = {
 				width : 700,
 				height : 300
 			};
 			options1.maxValue = 1000;
-			options1.increment = 10;
+			options1.increment = 100;
 			
 
 			Nwagon.chart(options1);
@@ -169,7 +170,7 @@ h2 {
 			'maxValue' : 10,
 			'increment' : 1
 		};
-		console.log(options);
+		//console.log(options);
 		Nwagon.chart(options);
 	</script>
 </body>
