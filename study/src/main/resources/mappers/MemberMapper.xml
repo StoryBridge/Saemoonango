@@ -15,7 +15,8 @@
 	</select>
 	
 	<select id="memberList" resultType="hashmap">
-		select id, name, totalpoint from member order by totalpoint desc
+		<!-- select id, name, totalpoint from member order by totalpoint desc -->
+		select id, name, totalpoint from member 
 	</select>
 	
 	<update id="totalPoint">
