@@ -385,11 +385,11 @@
 			//console.log("****************************");
 			//console.log("시작 시간: " + timestamp);
 			// Geolocation API에 액세스할 수 있는지를 확인
-			///if (navigator.geolocation) {
+			if (navigator.geolocation) {
 			///위치 정보를 얻기
-			///navigator.geolocation.getCurrentPosition(function(pos) {
-			///$('#latitude').html(pos.coords.latitude); // 위도
-			///$('#longitude').html(pos.coords.longitude); // 경도
+			navigator.geolocation.getCurrentPosition(function(pos) {
+			$('#latitude').html(pos.coords.latitude); // 위도
+			$('#longitude').html(pos.coords.longitude); // 경도
 			let distance;
 			let disX = 37.446896 - 37.4469025;
 			let disY = 127.143955 - 127.14405579999999;
@@ -399,8 +399,8 @@
 			//console.log("****************************");
 			//console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
 
-			///lat = pos.coords.latitude;
-			///lng = pos.coords.longitude;
+			lat = pos.coords.latitude;
+			lng = pos.coords.longitude;
 			//console.log(lat);
 			//console.log(lng);
 			//지도부분
@@ -414,8 +414,8 @@
 			//lng = 127.141704;
 			//lat = 37.444107;
 
-			lng = 127.145604;
-			lat = 37.450152;
+			//lng = 127.145604;
+			//lat = 37.450152;
 
 			let id = 4;
 			displayMap(lat, lng, id);
@@ -424,6 +424,7 @@
 
 			//lock 걸기 time 계속 안돌게
 			sessionStorage.setItem("modalFlag", false);
+			sessionStorage.setItem("firstMapFlag", true);
 			playAlert = setInterval(function() {
 				let modalFlag = sessionStorage.getItem("modalFlag");
 				if (modalFlag == "false") {
@@ -437,11 +438,11 @@
 			// 게임 문답부분
 			//questionManager();
 		});
-		///} else {
-		///	alert("이환경에서는 실행이 불가능합니다 -LSH");
-		///}
+		} else {
+			alert("이환경에서는 실행이 불가능합니다 -LSH");
+		}
 
-		///});
+		});
 	</script>
 
 </body>

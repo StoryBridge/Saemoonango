@@ -3,16 +3,16 @@ function displayMap(lat, lng, id) {
 	//console.log("****************************");
 	//console.log("dispayMap 시간: " + timestamp2);
 	//console.log(lat);
-	//console.log(lng);
+	//console.log(lng);	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center: new daum.maps.LatLng(lat, lng), // 지도의 중심좌표
 			level: 3
 			// 지도의 확대 레벨
 		};
-
+	
 	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+		
 	// 마커가 표시될 위치입니다
 	var markerPosition = new daum.maps.LatLng(lat, lng);
 
