@@ -358,11 +358,7 @@
 				</ul>
 			</div>
 		</section>
-
 	</div>
-
-
-
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b5474cbf83da15f638ea76b63ed04c3"></script>
 	<script src="js/displayMap.js"></script>
@@ -386,61 +382,63 @@
 			//console.log("시작 시간: " + timestamp);
 			// Geolocation API에 액세스할 수 있는지를 확인
 			if (navigator.geolocation) {
-			///위치 정보를 얻기
-			navigator.geolocation.getCurrentPosition(function(pos) {
-			$('#latitude').html(pos.coords.latitude); // 위도
-			$('#longitude').html(pos.coords.longitude); // 경도
-			let distance;
-			let disX = 37.446896 - 37.4469025;
-			let disY = 127.143955 - 127.14405579999999;
-			//최소거리 0.0001
-			//console.log(Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)));
-			//let timestamp2 = new Date().getTime();
-			//console.log("****************************");
-			//console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
+				///위치 정보를 얻기
+				navigator.geolocation.getCurrentPosition(function(pos) {
+					$('#latitude').html(pos.coords.latitude); // 위도
+					$('#longitude').html(pos.coords.longitude); // 경도
+					let distance;
+					let disX = 37.446896 - 37.4469025;
+					let disY = 127.143955 - 127.14405579999999;
+					//최소거리 0.0001
+					//console.log(Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)));
+					//let timestamp2 = new Date().getTime();
+					//console.log("****************************");
+					//console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
 
-			lat = pos.coords.latitude;
-			lng = pos.coords.longitude;
-			//console.log(lat);
-			//console.log(lng);
-			//지도부분
-			//가정하기 사거리
-			//lng = 127.145425;
-			//lat = 37.44631;
+					lat = pos.coords.latitude;
+					lng = pos.coords.longitude;
+					//console.log(lat);
+					//console.log(lng);
+					//지도부분
+					//가정하기 사거리
+					//lng = 127.145425;
+					//lat = 37.44631;
 
-			//lat = 37.443663;
-			//lng = 127.141979;
-			//가정하기 이마트
-			//lng = 127.141704;
-			//lat = 37.444107;
+					//lat = 37.443663;
+					//lng = 127.141979;
+					//가정하기 이마트
+					//lng = 127.141704;
+					//lat = 37.444107;
 
-			//lng = 127.145604;
-			//lat = 37.450152;
+					lng = 127.145604;
+					lat = 37.450152;
 
-			let id = 4;
-			displayMap(lat, lng, id);
-			myLocation(lat, lng, id);
-			chartData();
-
-			//lock 걸기 time 계속 안돌게
-			sessionStorage.setItem("modalFlag", false);
-			sessionStorage.setItem("firstMapFlag", true);
-			playAlert = setInterval(function() {
-				let modalFlag = sessionStorage.getItem("modalFlag");
-				if (modalFlag == "false") {
-					displayMap(lat, lng);
+					let id = 4;
+					displayMap(lat, lng, id);
 					myLocation(lat, lng, id);
 					chartData();
-				}
-			}, 5000);
 
-			//console.log("getJson Data Start");
-			// 게임 문답부분
-			//questionManager();
-		});
-		} else {
-			alert("이환경에서는 실행이 불가능합니다 -LSH");
-		}
+					//lock 걸기 time 계속 안돌게
+					sessionStorage.setItem("modalFlag", false);
+					sessionStorage.setItem("firstMapFlag", true);
+					playAlert = setInterval(function() {
+						lat = lat+0.001;
+						lng = lng-0.001;
+						//let modalFlag = sessionStorage.getItem("modalFlag");
+						//if (modalFlag == "false") {
+							displayMap(lat, lng);
+							myLocation(lat, lng, id);
+							chartData();
+						//}
+					}, 5000);
+
+					//console.log("getJson Data Start");
+					// 게임 문답부분
+					//questionManager();
+				});
+			} else {
+				alert("이환경에서는 실행이 불가능합니다 -LSH");
+			}
 
 		});
 	</script>
