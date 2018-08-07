@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.QuestionVO;
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.QuestionVO;
 
 @Repository
 public class LocationDAOImpl implements LocationDAO {

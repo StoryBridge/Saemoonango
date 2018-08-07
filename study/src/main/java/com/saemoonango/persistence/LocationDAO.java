@@ -2,8 +2,7 @@ package com.saemoonango.persistence;
 
 import java.util.List;
 
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.QuestionVO;
+import com.saemoonango.domain.LocationVO;
 
 public interface LocationDAO {
 	public void insert(LocationVO vo) throws Exception;

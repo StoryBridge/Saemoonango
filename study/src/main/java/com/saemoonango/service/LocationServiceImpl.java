@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 import org.springframework.stereotype.Repository;
+
+import com.saemoonango.domain.LocationVO;
 import com.saemoonango.persistence.LocationDAO;
-import com.saemoonangodomain.LocationVO;
 
 @Repository
 public class LocationServiceImpl implements LocationService {

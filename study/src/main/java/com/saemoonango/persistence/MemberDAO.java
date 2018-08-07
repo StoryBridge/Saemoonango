@@ -2,7 +2,7 @@ package com.saemoonango.persistence;
 
 import java.util.List;
 
-import com.saemoonangodomain.MemberVO;
+import com.saemoonango.domain.MemberVO;
 
 public interface MemberDAO {
 	//public void insert(MemberDetailVO vo) throws Exception;

@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.MemberVO;
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.MemberVO;
 
 
 @Repository

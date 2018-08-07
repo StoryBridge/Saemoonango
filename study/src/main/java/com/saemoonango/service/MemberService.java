@@ -2,9 +2,9 @@ package com.saemoonango.service;
 
 import java.util.List;
 
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.MemberDetailVO;
-import com.saemoonangodomain.MemberVO;
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.MemberDetailVO;
+import com.saemoonango.domain.MemberVO;
 
 public interface MemberService {
 	//public void insert(MemberDetailVO vo) throws Exception;

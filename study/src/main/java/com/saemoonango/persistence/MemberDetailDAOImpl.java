@@ -6,8 +6,9 @@ import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.MemberDetailVO;
+
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.MemberDetailVO;
 
 @Repository
 public class MemberDetailDAOImpl implements MemberDetailDAO {
