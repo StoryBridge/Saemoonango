@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.saemoonango.domain.MemberDetailVO;
 import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.MemberDAO;
 import com.saemoonango.persistence.MemberDAOImpl;
@@ -19,7 +20,6 @@ import com.saemoonango.persistence.QuestionDAO;
 import com.saemoonango.service.MemberDetailService;
 import com.saemoonango.service.MemberService;
 import com.saemoonango.service.MemberServiceImpl;
-import com.saemoonangodomain.MemberDetailVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })

@@ -7,11 +7,11 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.MemberDetailVO;
+import com.saemoonango.domain.MemberVO;
 import com.saemoonango.persistence.MemberDAO;
 import com.saemoonango.persistence.MemberDetailDAO;
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.MemberDetailVO;
-import com.saemoonangodomain.MemberVO;
 
 @Repository
 public class MemberServiceImpl implements MemberService {

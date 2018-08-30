@@ -1,4 +1,4 @@
-package com.saemoonangodomain;
+package com.saemoonango.domain;
 
 public class MemberDetailVO {
 	private int MDno;

@@ -25,14 +25,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.MemberDetailVO;
+import com.saemoonango.domain.MemberVO;
 import com.saemoonango.persistence.LocationDAO;
 import com.saemoonango.persistence.QuestionDAO;
 import com.saemoonango.service.LocationService;
 import com.saemoonango.service.MemberDetailService;
 import com.saemoonango.service.MemberService;
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.MemberDetailVO;
-import com.saemoonangodomain.MemberVO;
 
 /**
  * Handles requests for the application home page.

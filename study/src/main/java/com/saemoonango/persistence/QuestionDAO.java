@@ -2,8 +2,8 @@ package com.saemoonango.persistence;
 
 import java.util.List;
 
-import com.saemoonangodomain.LocationVO;
-import com.saemoonangodomain.QuestionVO;
+import com.saemoonango.domain.LocationVO;
+import com.saemoonango.domain.QuestionVO;
 
 public interface QuestionDAO {
 
