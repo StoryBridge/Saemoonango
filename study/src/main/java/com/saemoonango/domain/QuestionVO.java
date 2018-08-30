@@ -36,6 +36,7 @@ public class QuestionVO {
 	public Integer getPoint() {
 		return Point;
 	}
+	
 	public void setPoint(Integer point) {
 		Point = point;
 	}
