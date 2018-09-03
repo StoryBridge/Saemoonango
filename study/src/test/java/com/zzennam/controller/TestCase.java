@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.concurrent.SuccessCallback;
 
 import com.saemoonango.domain.MemberDetailVO;
 import com.saemoonango.persistence.LocationDAO;
@@ -32,7 +33,7 @@ public class TestCase {
 	private LocationDAO ldao;
 	
 	@Inject
-	private MemberDetailService mDdao;
+	private MemberDetailService mdDao;
 	@Inject
 	private MemberDetailDAOImpl mmdao;
 
@@ -54,6 +55,7 @@ public class TestCase {
 	public void read2() throws Exception {
 		System.out.println(ldao.read());
 		System.out.println("Success");
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -64,21 +66,24 @@ public class TestCase {
 	@Test
 	public void memberDetailInsertTest() throws Exception{
 		MemberDetailVO vo = new MemberDetailVO();
-		vo.setGetPoint(10);
-		vo.setId("zzennam");
+		vo.setGetPoint(99);
+		vo.setId("id5");
 		vo.setQno(4);
-		mDdao.insert(vo);
+		System.out.println(vo.toString());
+		mdDao.insert(vo);
+		
 	}
 	@Test
 	public void memberDetailCertificateTest() throws Exception{
 		MemberDetailVO vo = new MemberDetailVO();		
-		vo.setId("zzennam");
-		vo.setQno(3);
+		vo.setId("id1");
+		vo.setQno(5);
 		//있으면 true 없으면 false
-		System.out.println(mDdao.certificate(vo));		
+		System.out.println(mdDao.certificate(vo));		
 	}
 	
 
+	//fail.
 	@Inject
 	private MemberServiceImpl msi;
 	@Test

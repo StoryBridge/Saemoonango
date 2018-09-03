@@ -25,7 +25,7 @@ public class MemberTest {
 		vo.setLng(37.0);
 		vo.setLat(127.0);
 		System.out.println(vo.toString());
-		System.out.println("memberVo test...............");
+		System.out.println("myLocation test ok....");
 		mService.myLocation(vo);
 	}
 

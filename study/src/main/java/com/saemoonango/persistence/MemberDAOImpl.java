@@ -18,7 +18,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void totalPoint() throws Exception {
-		// TODO Auto-generated method stub
 		sqlsession.update("com.zzennam.persistence.MemberMapper.totalPoint");
 	}
 

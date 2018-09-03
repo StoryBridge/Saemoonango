@@ -5,7 +5,7 @@
 <mapper namespace="com.zzennam.persistence.MemberDetailMapper">
 
 	<insert id="insert">
-		insert into member_detail (GetPoint, Id, Qno) VALUES(#{GetPoint}, #{Id}, #{Qno})
+		insert into member_detail (get_point, id, qno) values (#{GetPoint}, #{Id}, #{Qno})
 	</insert>
 
 	<select id="certificate" resultType="int">

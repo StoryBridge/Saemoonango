@@ -11,7 +11,7 @@
 	</insert>
 
 	<select id="read" resultType="hashmap">
-		select Qno, Question, RightAnswer, Point, Lno from question where Lno =#{lno}
+		select Qno, Question, Right_Answer, Point, Lno from question where Lno =#{lno}
 	</select>
 
 

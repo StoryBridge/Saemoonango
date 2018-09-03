@@ -30,5 +30,9 @@ public class MemberDetailVO {
 	public void setQno(int qno) {
 		Qno = qno;
 	}
+	@Override
+	public String toString() {
+		return "MemberDetailVO [MDno=" + MDno + ", GetPoint=" + GetPoint + ", Id=" + Id + ", Qno=" + Qno + "]";
+	}
 	
 }
