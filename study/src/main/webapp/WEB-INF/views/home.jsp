@@ -65,9 +65,7 @@
 			},
 			afterOpen : function() {
 				//console.log('opened');
-			}
-
-			,
+			},
 			beforeClose : function(next) {
 				//console.log('beforeClose');
 				next();
@@ -77,13 +75,13 @@
 				sessionStorage.removeItem("modalFlag");
 				sessionStorage.setItem("modalFlag", false);
 			}
-		// , bodyClass: 'modal-open'
-		// , dialogClass: 'modal-dialog'
-		// , dialogOpenClass: 'animated fadeIn'
-		// , dialogCloseClass: 'animated fadeOut'
+			// , bodyClass: 'modal-open'
+			// , dialogClass: 'modal-dialog'
+			// , dialogOpenClass: 'animated fadeIn'
+			// , dialogCloseClass: 'animated fadeOut'
 
-		// , focus: true
-		// , focusElements: ['input.form-control', 'textarea', 'button.btn-primary']
+			// , focus: true
+			// , focusElements: ['input.form-control', 'textarea', 'button.btn-primary']
 
 		// , escapeClose: true
 		});
@@ -93,61 +91,61 @@
 		}, false);
 
 		document.getElementById('showModal').addEventListener("click",
+			function(ev) {
+				ev.preventDefault();
+			//여기서부터!! 20180404modal.open();
+			}, false);
+		document
+			.getElementById('commit')
+			.addEventListener(
+				"click",
 				function(ev) {
 					ev.preventDefault();
-					//여기서부터!! 20180404modal.open();
+					let getAnswer = $("#answer").val();
+					let rightAnswer = $('#rightAnswer').html();
+					let point = $('#point').html();
+					let Qno = $('#Qno').html();
+					//console.log("commit answer: "+ getAnswer);					
+					//console.log("rightAnswer is "+rightAnswer);
+					if (rightAnswer == getAnswer) {
+						//console.log("정답"); //여기 확인 2018-0421
+						$.ajaxSettings.traditional = true;
+						$
+							.ajax({
+								type : "POST",
+								url : "/answer",
+								data : {
+									getPoint : point,
+									//Id 수정 해야함
+									Id : "zzennam",
+									Qno : Qno
+								},
+								contentType : "application/x-www-form-urlencoded; charset=utf-8",
+								dataType : "json",
+								success : function(data) {
+									//Ajax 성공시
+									console.log("POST SUCCESS");
+									console.log(data.already);
+									alert(data.already);
+								//modal.open(); 나중에 모달로 바꾸자
+								},
+								error : function() {
+									//Ajax 실패시
+									console.log("POST FAIL");
+									alert("전송 실패");
+								}
+							});
+					} else {
+						//console.log("원점수: " + point);
+						point -= 1;
+						//console.log("적용 점수: "+ point);
+						document.getElementById("point").innerHTML = point;
+						ev.preventDefault();
+						sessionStorage.removeItem("modalFlag");
+						sessionStorage.setItem("modalFlag", false);
+						alert("땡");
+					}
 				}, false);
-		document
-				.getElementById('commit')
-				.addEventListener(
-						"click",
-						function(ev) {
-							ev.preventDefault();
-							let getAnswer = $("#answer").val();
-							let rightAnswer = $('#rightAnswer').html();
-							let point = $('#point').html();
-							let Qno = $('#Qno').html();
-							//console.log("commit answer: "+ getAnswer);					
-							//console.log("rightAnswer is "+rightAnswer);
-							if (rightAnswer == getAnswer) {
-								//console.log("정답"); //여기 확인 2018-0421
-								$.ajaxSettings.traditional = true;
-								$
-										.ajax({
-											type : "POST",
-											url : "/answer",
-											data : {
-												getPoint : point,
-												//Id 수정 해야함
-												Id : "zzennam",
-												Qno : Qno
-											},
-											contentType : "application/x-www-form-urlencoded; charset=utf-8",
-											dataType : "json",
-											success : function(data) {
-												//Ajax 성공시
-												console.log("POST SUCCESS");
-												console.log(data.already);
-												alert(data.already);
-												//modal.open(); 나중에 모달로 바꾸자
-											},
-											error : function() {
-												//Ajax 실패시
-												console.log("POST FAIL");
-												alert("전송 실패");
-											}
-										});
-							} else {
-								//console.log("원점수: " + point);
-								point -= 1;
-								//console.log("적용 점수: "+ point);
-								document.getElementById("point").innerHTML = point;
-								ev.preventDefault();
-								sessionStorage.removeItem("modalFlag");
-								sessionStorage.setItem("modalFlag", false);
-								alert("땡");
-							}
-						}, false);
 		window.modal = modal;
 	}
 </script>
@@ -394,7 +392,7 @@
 					//let timestamp2 = new Date().getTime();
 					//console.log("****************************");
 					//console.log("위도 경도 얻는 시간: " + (timestamp2 - timestamp));
-
+	
 					lat = pos.coords.latitude;
 					lng = pos.coords.longitude;
 					//console.log(lat);
@@ -403,43 +401,40 @@
 					//가정하기 사거리
 					//lng = 127.145425;
 					//lat = 37.44631;
-
+	
 					//lat = 37.443663;
 					//lng = 127.141979;
 					//가정하기 이마트
 					//lng = 127.141704;
 					//lat = 37.444107;
-
+	
 					lng = 127.145604;
 					lat = 37.450152;
-
+	
 					let id = 4;
-					displayMap(lat, lng, id);
-					myLocation(lat, lng, id);
-					chartData();
-
+	
 					//lock 걸기 time 계속 안돌게
 					sessionStorage.setItem("modalFlag", false);
 					sessionStorage.setItem("firstMapFlag", true);
-					playAlert = setInterval(function() {
-						lat = lat+0.001;
-						lng = lng-0.001;
-						//let modalFlag = sessionStorage.getItem("modalFlag");
-						//if (modalFlag == "false") {
-							displayMap(lat, lng);
-							myLocation(lat, lng, id);
-							chartData();
-						//}
-					}, 5000);
-
-					//console.log("getJson Data Start");
-					// 게임 문답부분
-					//questionManager();
+					//playAlert = setInterval(function() {
+					lat = lat + 0.001;
+					lng = lng - 0.001;
+					//let modalFlag = sessionStorage.getItem("modalFlag");
+					//if (modalFlag == "false") {
+					displayMap(lat, lng);
+					myLocation(lat, lng, id);
+					chartData();
+					//}
+					//}, 5000);
+	
+				//console.log("getJson Data Start");
+				// 게임 문답부분
+				//questionManager();
 				});
 			} else {
 				alert("이환경에서는 실행이 불가능합니다 -LSH");
 			}
-
+	
 		});
 	</script>
 

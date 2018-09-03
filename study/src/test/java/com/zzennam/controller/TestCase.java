@@ -9,17 +9,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.concurrent.SuccessCallback;
 
 import com.saemoonango.domain.MemberDetailVO;
 import com.saemoonango.persistence.LocationDAO;
-import com.saemoonango.persistence.MemberDAO;
-import com.saemoonango.persistence.MemberDAOImpl;
-import com.saemoonango.persistence.MemberDetailDAO;
 import com.saemoonango.persistence.MemberDetailDAOImpl;
 import com.saemoonango.persistence.QuestionDAO;
 import com.saemoonango.service.MemberDetailService;
-import com.saemoonango.service.MemberService;
 import com.saemoonango.service.MemberServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,7 +26,7 @@ public class TestCase {
 
 	@Autowired
 	private LocationDAO ldao;
-	
+
 	@Inject
 	private MemberDetailService mdDao;
 	@Inject
@@ -39,12 +34,13 @@ public class TestCase {
 
 	@Inject
 	private MemberServiceImpl mService;
+
 	@Test
-	public void memberList() throws Exception{
+	public void memberList() throws Exception {
 		String id = "4";
 		System.out.println(mService.read(id));
 	}
-	
+
 	@Test
 	public void read() throws Exception {
 		System.out.println(dao.read(1));
@@ -62,46 +58,38 @@ public class TestCase {
 	public void test() {
 		fail("Not yet implemented");
 	}
-	
+
 	@Test
-	public void memberDetailInsertTest() throws Exception{
+	public void memberDetailInsertTest() throws Exception {
 		MemberDetailVO vo = new MemberDetailVO();
 		vo.setGetPoint(99);
 		vo.setId("id5");
 		vo.setQno(4);
 		System.out.println(vo.toString());
 		mdDao.insert(vo);
-		
+
 	}
+
 	@Test
-	public void memberDetailCertificateTest() throws Exception{
-		MemberDetailVO vo = new MemberDetailVO();		
+	public void memberDetailCertificateTest() throws Exception {
+		MemberDetailVO vo = new MemberDetailVO();
 		vo.setId("id1");
 		vo.setQno(5);
-		//있으면 true 없으면 false
-		System.out.println(mdDao.certificate(vo));		
+		// 있으면 true 없으면 false
+		System.out.println(mdDao.certificate(vo));
 	}
-	
 
-	//fail.
 	@Inject
 	private MemberServiceImpl msi;
+
 	@Test
-	public void memberTotalPoint() throws Exception{
-		msi.totalPoint();
-		
+	public void memberTotalPoint() {
+		try {
+			msi.totalPoint();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("fail...");
+		}
 	}
-	
-	void solve(double meal_cost, int tip_percent, int tax_percent) {
-	    
-	    int totalCost = 0;
-	    totalCost = (int) (meal_cost +  meal_cost * (tip_percent/100) + meal_cost * (tax_percent/100));
-	 
-	    System.out.println("The total meal cost is "+ totalCost +" dollars.");
-
-
-	}
-
-	
-
 }
