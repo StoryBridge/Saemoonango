@@ -11,7 +11,7 @@
 	</insert>
 
 	<select id="read" resultType="hashmap">
-		select Lno, Lat, Lng, PlaceName from location
+		select Lno, Lat, Lng, Place_Name from location
 	</select>
 
 

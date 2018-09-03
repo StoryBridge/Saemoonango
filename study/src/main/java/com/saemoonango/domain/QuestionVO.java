@@ -9,6 +9,9 @@ public class QuestionVO {
 	private Integer Lno;
 	private Integer Cno;
 	
+	
+	
+	
 	public Integer getCno() {
 		return Cno;
 	}
