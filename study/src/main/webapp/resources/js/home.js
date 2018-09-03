@@ -3,8 +3,8 @@
  */
 
 
-var homeManager = (function () {
-	function myLocation(callback){
+var homeManager = (function() {
+	function myLocation(callback) {
 		$.getJSON(host + '/mylocation', callback);
 	}
 	function locationData(callback) {
@@ -25,9 +25,9 @@ var homeManager = (function () {
 
 	return {
 		myLocation : myLocation,
-		locationData: locationData,
-		questionData: questionData,
-		memberlist: memberlist,
+		locationData : locationData,
+		questionData : questionData,
+		memberlist : memberlist,
 		getRank : getRank
 	}
 })();

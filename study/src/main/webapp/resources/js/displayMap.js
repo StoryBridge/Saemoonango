@@ -4,25 +4,25 @@ function displayMap(lat, lng, id) {
 	// console.log("dispayMap 시간: " + timestamp2);
 	// console.log(lat);
 	// console.log(lng);
-	
+
 	// 지도 가운데 계속 열게하는거 막기 -> 근데 내가 움직이면 또 어떻게 바뀌는지 모르겠음
 	// markerPosition 여기가 최신화 되서 내가 움직이면 마커 움직일지 봐야겠음
 	// 실제 시연때 watchPosition 이거 써보면 내가 움직일때 속도값 찾아서 움직이면 변하는걸로 암 확인 ㄱㄱ
 	let modalFlag = sessionStorage.getItem("modalFlag");
 	if (modalFlag == "false") {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-		mapOption = {
-			center : new daum.maps.LatLng(lat, lng), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
+			mapOption = {
+				center : new daum.maps.LatLng(lat, lng), // 지도의 중심좌표
+				level : 3
+			// 지도의 확대 레벨
+			};
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		sessionStorage.setItem("modalFlag", true);
 	}
-	
+
 	// 마커가 표시될 위치입니다
 	var markerPosition = new daum.maps.LatLng(lat, lng);
-	
+
 	// 마커를 생성합니다
 	var marker = null;
 	var marker = new daum.maps.Marker({
@@ -34,6 +34,8 @@ function displayMap(lat, lng, id) {
 	// 문제 장소들 데이타 호출
 	homeManager.locationData(location);
 	function location(data) {
+		console.log("location start.....");
+		console.log(data);
 		// var timestamp3 = new Date().getTime();
 		// console.log("****************************");
 		// console.log("lat : " + lat + " lng : " + lng);
@@ -45,39 +47,31 @@ function displayMap(lat, lng, id) {
 			title : '<div>내위치</div>',
 			latlng : new daum.maps.LatLng(lat, lng)
 		});
-		$
-				.each(
-						data.location,
-						function(i, location) {
-							positions
-									.push({
-										title : '<div>' + location.PlaceName
-												+ '</div>',
-										latlng : new daum.maps.LatLng(
-												location.Lng, location.Lat)
-									});
-							disX = location.Lng - lat;
-							disY = location.Lat - lng;
-							// 문제 호출
-							if (Math.sqrt(Math.abs(disX * disX)
-									+ Math.abs(disY * disY)) < 0.0001) {
-								// console.log(location.Lno + "번 문제");
-								homeManager
-										.questionData(location.Lno, question);
-								function question(data) {
-									// console.log("GET QUESTION");
-									// console.log(data);
-									document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
-									document.getElementById("question").innerHTML = data.question[0].Question
-											+ ' <span id="point">'
-											+ data.question[0].Point
-											+ '</span>점';
-									document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
-									document.getElementById("Qno").innerHTML = data.question[0].Qno;
-									modal.open();
-								}
-							}
-						});
+		$.each(data.location, function(i, location) {
+			positions.push({
+				title : '<div>' + location.Place_Name + '</div>',
+				latlng : new daum.maps.LatLng(location.Lng, location.Lat)
+			});
+			disX = location.Lng - lat;
+			disY = location.Lat - lng;
+			// 문제 호출
+			if (Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)) < 0.0001) {
+				// console.log(location.Lno + "번 문제");
+				homeManager.questionData(location.Lno, question);
+				function question(data) {
+					// console.log("GET QUESTION");
+					// console.log(data);
+					document.getElementById("modal-header").innerHTML = '<strong>새문안고</strong>';
+					document.getElementById("question").innerHTML = data.question[0].Question
+						+ ' <span id="point">'
+						+ data.question[0].Point
+						+ '</span>점';
+					document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
+					document.getElementById("Qno").innerHTML = data.question[0].Qno;
+					modal.open();
+				}
+			}
+		});
 		// console.log(positions);
 
 		// 다른 유저들 데이터 호출
@@ -89,20 +83,20 @@ function displayMap(lat, lng, id) {
 				memberlistArray.push({
 					title : '<div>' + memberlist.name + '</div>',
 					latlng : new daum.maps.LatLng(memberlist.Lng,
-							memberlist.Lat),
+						memberlist.Lat),
 					Img : memberlist.Img
 				});
 			});
-			// console.log(memberlistArray);
+		// console.log(memberlistArray);
 		}
 
 		// 내 위치
 		var imageSrc1 = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
-		// 마커이미지의 주소입니다
-		imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
-		imageOption = {
-			offset : new daum.maps.Point(27, 69)
-		}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+			// 마커이미지의 주소입니다
+			imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
+			imageOption = {
+				offset : new daum.maps.Point(27, 69)
+			}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 		// 마커 이미지를 생성합니다
 		var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize);
@@ -126,7 +120,7 @@ function displayMap(lat, lng, id) {
 			map : map,
 			position : positions[0].latlng,
 			content : '<div class="customoverlay"><span class="title">'
-					+ positions[0].title + '</span></div>',
+				+ positions[0].title + '</span></div>',
 			yAnchor : 1
 		});
 
@@ -158,8 +152,8 @@ function displayMap(lat, lng, id) {
 				map : map,
 				position : positions[i].latlng,
 				content : '<div class="customoverlay">'
-						+ '<span class="title">' + positions[i].title
-						+ '</span></div>',
+					+ '<span class="title">' + positions[i].title
+					+ '</span></div>',
 				yAnchor : 1
 			});
 
@@ -167,9 +161,9 @@ function displayMap(lat, lng, id) {
 			// 이벤트 리스너로는 클로저를 만들어 등록합니다
 			// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 			daum.maps.event.addListener(marker, 'mouseover', makeOverListener(
-					map, marker, infowindow));
+				map, marker, infowindow));
 			daum.maps.event.addListener(marker, 'mouseout',
-					makeOutListener(infowindow));
+				makeOutListener(infowindow));
 		}
 
 		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
