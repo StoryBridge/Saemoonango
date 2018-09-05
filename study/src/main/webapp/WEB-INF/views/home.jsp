@@ -93,59 +93,57 @@
 		document.getElementById('showModal').addEventListener("click",
 			function(ev) {
 				ev.preventDefault();
-			//여기서부터!! 20180404modal.open();
+
+				//여기서부터!! 20180404
+				modal.open();
 			}, false);
-		document
-			.getElementById('commit')
-			.addEventListener(
-				"click",
-				function(ev) {
-					ev.preventDefault();
-					let getAnswer = $("#answer").val();
-					let rightAnswer = $('#rightAnswer').html();
-					let point = $('#point').html();
-					let Qno = $('#Qno').html();
-					//console.log("commit answer: "+ getAnswer);					
-					//console.log("rightAnswer is "+rightAnswer);
-					if (rightAnswer == getAnswer) {
-						//console.log("정답"); //여기 확인 2018-0421
-						$.ajaxSettings.traditional = true;
-						$
-							.ajax({
-								type : "POST",
-								url : "/answer",
-								data : {
-									getPoint : point,
-									//Id 수정 해야함
-									Id : "zzennam",
-									Qno : Qno
-								},
-								contentType : "application/x-www-form-urlencoded; charset=utf-8",
-								dataType : "json",
-								success : function(data) {
-									//Ajax 성공시
-									console.log("POST SUCCESS");
-									console.log(data.already);
-									alert(data.already);
-								//modal.open(); 나중에 모달로 바꾸자
-								},
-								error : function() {
-									//Ajax 실패시
-									console.log("POST FAIL");
-									alert("전송 실패");
-								}
-							});
-					} else {
-						//console.log("원점수: " + point);
-						point -= 1;
-						//console.log("적용 점수: "+ point);
-						document.getElementById("point").innerHTML = point;
-						ev.preventDefault();
-						sessionStorage.removeItem("modalFlag");
-						sessionStorage.setItem("modalFlag", false);
-						alert("땡");
+		document.getElementById('commit').addEventListener("click", function(ev) {
+			ev.preventDefault();
+			let getAnswer = $("#answer").val();
+			let rightAnswer = $('#rightAnswer').html();
+			let point = $('#point').html();
+			let Qno = $('#Qno').html();
+			console.log("commit answer: "+ getAnswer);					
+			console.log("rightAnswer is "+rightAnswer);
+			if (rightAnswer == getAnswer) {
+				//console.log("정답"); //여기 확인 2018-0421
+				$.ajaxSettings.traditional = true;
+				$.ajax({
+					type : "POST",
+					url : "/answer",
+					data : {
+						getPoint : point,
+						//Id 수정 해야함
+						Id : "id4",
+						Qno : Qno
+					},
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					dataType : "json",
+					success : function(data) {
+						//Ajax 성공시
+						console.log("POST SUCCESS");
+						console.log(data.already);
+						alert(data.already);
+					//modal.open(); 나중에 모달로 바꾸자
+					},
+					error : function() {
+						//Ajax 실패시
+						console.log("POST FAIL");
+						alert("전송 실패");
 					}
-				}, false);
+				});
+			} else {
+				//console.log("원점수: " + point);
+				point -= 1;
+				//console.log("적용 점수: "+ point);
+				document.getElementById("point").innerHTML = point;
+				ev.preventDefault();
+				sessionStorage.removeItem("modalFlag");
+				sessionStorage.setItem("modalFlag", false);
+				alert("땡");
+			}
+		}, false);
+
 		window.modal = modal;
 	}
 </script>
@@ -385,8 +383,10 @@
 					$('#latitude').html(pos.coords.latitude); // 위도
 					$('#longitude').html(pos.coords.longitude); // 경도
 					let distance;
-					let disX = 37.446896 - 37.4469025;
-					let disY = 127.143955 - 127.14405579999999;
+
+					//let disX = 37.446896 - 37.4469025;
+					//let disY = 127.143955 - 127.14405579999999;
+
 					//최소거리 0.0001
 					//console.log(Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)));
 					//let timestamp2 = new Date().getTime();
@@ -404,12 +404,18 @@
 	
 					//lat = 37.443663;
 					//lng = 127.141979;
-					//가정하기 이마트
-					//lng = 127.141704;
-					//lat = 37.444107;
-	
-					lng = 127.145604;
-					lat = 37.450152;
+
+					//가정하기 이마트 3번
+					//lng = 127.14161;
+					//lat = 37.444104;
+					
+					// 4번 금빛초교
+					lng = 127.140194;
+					lat = 37.447358;
+					
+					
+					console.log("lng: " + lng + " lat: " + lat);
+
 	
 					let id = 4;
 	
@@ -417,8 +423,11 @@
 					sessionStorage.setItem("modalFlag", false);
 					sessionStorage.setItem("firstMapFlag", true);
 					//playAlert = setInterval(function() {
-					lat = lat + 0.001;
-					lng = lng - 0.001;
+
+					//lat = lat + 0.001;
+					//lng = lng - 0.001;
+
+
 					//let modalFlag = sessionStorage.getItem("modalFlag");
 					//if (modalFlag == "false") {
 					displayMap(lat, lng);

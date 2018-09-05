@@ -12,7 +12,7 @@ var homeManager = (function() {
 	}
 
 	function questionData(lno, callback) {
-		console.log("문제번호: " + lno);
+		//console.log("문제번호: " + lno);
 		$.getJSON(host + '/question/' + lno, callback);
 	}
 

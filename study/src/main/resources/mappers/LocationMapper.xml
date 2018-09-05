@@ -11,7 +11,7 @@
 	</insert>
 
 	<select id="read" resultType="hashmap">
-		select Lno, Lat, Lng, Place_Name from location
+		select lo.Lno, lo.Lat, Lng, Place_Name, point from location as lo INNER JOIN question on lo.Lno = question.Lno
 	</select>
 
 
