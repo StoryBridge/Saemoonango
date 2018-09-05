@@ -112,7 +112,7 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
 	public HashMap<String, Object> getAnswer(MemberDetailVO vo, RedirectAttributes rttr) throws Exception {
-		// System.out.println(vo.toString());
+		 System.out.println(vo.toString());
 		// ModelAndView model = new ModelAndView();
 		HashMap<String, Object> map = new HashMap<>();
 		// model.setViewName("home");

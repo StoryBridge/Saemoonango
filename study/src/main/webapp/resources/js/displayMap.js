@@ -28,14 +28,14 @@ function displayMap(lat, lng, id) {
 	var marker = new daum.maps.Marker({
 		position : markerPosition
 	});
-	console.log(marker);
-	console.log("---------");
+	//console.log(marker);
+	//	console.log("---------");
 
 	// 문제 장소들 데이타 호출
 	homeManager.locationData(location);
 	function location(data) {
-		console.log("location start.....");
-		console.log(data);
+		//		console.log("location start.....");
+		//		console.log(data);
 		// var timestamp3 = new Date().getTime();
 		// console.log("****************************");
 		// console.log("lat : " + lat + " lng : " + lng);
@@ -54,9 +54,9 @@ function displayMap(lat, lng, id) {
 			});
 			disX = location.Lng - lat;
 			disY = location.Lat - lng;
-			// 문제 호출
+			// 일정 범위 안에 있으면 문제 호출
 			if (Math.sqrt(Math.abs(disX * disX) + Math.abs(disY * disY)) < 0.0001) {
-				// console.log(location.Lno + "번 문제");
+				//console.log(location.Lno + "번 문제");
 				homeManager.questionData(location.Lno, question);
 				function question(data) {
 					// console.log("GET QUESTION");
@@ -66,7 +66,7 @@ function displayMap(lat, lng, id) {
 						+ ' <span id="point">'
 						+ data.question[0].Point
 						+ '</span>점';
-					document.getElementById("rightAnswer").innerHTML = data.question[0].RightAnswer;
+					document.getElementById("rightAnswer").innerHTML = data.question[0].Right_Answer;
 					document.getElementById("Qno").innerHTML = data.question[0].Qno;
 					modal.open();
 				}
@@ -77,13 +77,13 @@ function displayMap(lat, lng, id) {
 		// 다른 유저들 데이터 호출
 		homeManager.memberlist(id, members);
 		function members(membersData) {
-			console.log("members connected.....");
+			//console.log("members connected.....");
+
 			let memberlistArray = [];
 			$.each(membersData.memberlist, function(i, memberlist) {
 				memberlistArray.push({
 					title : '<div>' + memberlist.name + '</div>',
-					latlng : new daum.maps.LatLng(memberlist.Lng,
-						memberlist.Lat),
+					latlng : new daum.maps.LatLng(memberlist.Lng, memberlist.Lat),
 					Img : memberlist.Img
 				});
 			});
